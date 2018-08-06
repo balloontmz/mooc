@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users'
 ]
+# 重载AUTH_USER_MODEL (用来干嘛？) 为了使UserProfile生效：可能和后面相关？
+AUTH_USER_MODEL = 'users.UserProfile'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
