@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# Application definition 注册我们的app，得学
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users'
+    'users',
+    'courses',
+    'operation',
+    'organization',
 ]
 # 重载AUTH_USER_MODEL (用来干嘛？) 为了使UserProfile生效：可能和后面相关？
 AUTH_USER_MODEL = 'users.UserProfile'
