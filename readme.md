@@ -27,3 +27,13 @@ database 'default'
 setting中加入app 和 AUTH_USER_MODEL
 然后初始化数据库表
 ###的顺序完成的初始化，没有了auth_user这张表。。。
+
+>    class Meta:
+        verbose_name = u"用户留言信息"
+         # 指明复数信息，否则后台显示"用户留言s"
+        verbose_name_plural = verbose_name
+         # 这里我们让它自动生成所以不用指定db-table
+        # db_table = user_message
+         # ordering指定默认排序字段,如：
+        # ordering = ['-object_id']
+###
