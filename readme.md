@@ -48,4 +48,33 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print(BASE_DIR)
 print(os.path.join(BASE_DIR, 'apps'))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+
 >关于 makemigrations & migrate 数据库表的变动问题，还有许多疑问
+修改过app的models之后，一定要记得运行上面命令，这样才能更新数据库，从而进行其他操作
+###
+setting中操作
+# 语言改为中文
+LANGUAGE_CODE = 'zh-hans'
+# 时区改为上海
+TIME_ZONE = 'Asia/Shanghai'
+# 数据库存储使用时间，True时间会被存为UTC的时间
+USE_TZ = False
+
+新建的 model 对象的内嵌 类Meta的verbose_name字段用于在后台显示表名
+为了适配xadmin，采用了降级django：
+>pip install django==2.0.8
+重置了数据库编码
+alter database mooc3 character set utf8
+/etc/mysql/mysql.conf.d mysql.cnf文件中加入如下配置
+[mysqld]
+character-set-server=utf8 
+[client]
+default-character-set=utf8 
+[mysql]
+default-character-set=utf8
+
+删除了一次全部的migrations，因为之前初始化的时候编码有问题。。。
+
+class EmailVerifyRecordAdmin(object):
+    # 配置我们后台需要显示的列。
+    list_display = ['code', 'email', 'send_type', 'send_time']

@@ -16,7 +16,7 @@ class UserProfile(AbstractUser):
     # 生日，可以为空
     birthday = models.DateField(verbose_name='birthday', null=True, blank=True)
     gender = models.CharField(
-        max_length=5,
+        max_length=10,
         verbose_name='sex',
         choices=GENDER_CHOICES,
         default='female'
@@ -33,7 +33,7 @@ class UserProfile(AbstractUser):
     )
     # meta信息，即后台栏目名
     class Meta:
-        verbose_name = 'user_msg'
+        verbose_name = 'user_msg'  # 此处用于后台显示
         verbose_name_plural = verbose_name
 
     # 重载str方法，打印实例会打印出username，username继承自abstractuser
@@ -53,6 +53,9 @@ class EmailVerifyRecord(models.Model):
     send_type = models.CharField(choices=SEND_CHOICES, max_length=10)
     # 这里的now不带括号，表示调用时才运行，而不是编译时运行
     send_time = models.DateTimeField(default=datetime.now)
+    # 某种类型的调用对象时的返回值？？？
+    def __str__(self):
+        return '{0}({1})'.format(self.code, self.email)
 
     class Meta:
         verbose_name = 'verify_code'
@@ -73,5 +76,5 @@ class Banner(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name='add_time')
 
     class Meta:
-        verbose_name='banner'
+        verbose_name = 'banner'
         verbose_name_plural = verbose_name
