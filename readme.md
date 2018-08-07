@@ -37,3 +37,15 @@ setting中加入app 和 AUTH_USER_MODEL
          # ordering指定默认排序字段,如：
         # ordering = ['-object_id']
 ###
+
+ on_delete=models.CASCADE 级联删除
+ 
+ import sys
+import os
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
+print(os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+>关于 makemigrations & migrate 数据库表的变动问题，还有许多疑问

@@ -39,7 +39,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     # 因为一个课程对应很多章节，所以在章节表中将课程设置为外键
     # 作为一个字段来让我们可以知道这个章节对应哪个课程
-    course = models.ForeignKey(Course, verbose_name='course')
+    course = models.ForeignKey(Course, verbose_name='course', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='lesson_name')
     # 课程添加时间？
     add_time = models.DateTimeField(default=datetime.now, verbose_name='add_time')
@@ -53,7 +53,7 @@ class Lesson(models.Model):
 class Video(models.Model):
     # 因为一个章节对应很多视频，所以在视频表中将章节设置为外键
     # 作为一个字段来存储让我们知道这个视频对应哪个章节
-    lesson = models.ForeignKey(Lesson, verbose_name='lesson')
+    lesson = models.ForeignKey(Lesson, verbose_name='lesson', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='video_name')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='add_time')
 
@@ -66,7 +66,7 @@ class Video(models.Model):
 class CourseResource(models.Model):
     # 因为一个课程对应很多资源，所以在课程资源表中将课程设置为外键。
     # 作为一个字段来让我们知道这个资源对应哪个课程
-    course = models.ForeignKey(Course, verbose_name='course')
+    course = models.ForeignKey(Course, verbose_name='course', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='resource_name')
     # 这里定义文件类型的field，后台管理系统中会直接有上传的按钮？
     download = models.FileField(

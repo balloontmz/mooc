@@ -61,7 +61,7 @@ class EmailVerifyRecord(models.Model):
 
 # 轮播图model
 class Banner(models.Model):
-    title = models.CharField(max)
+    title = models.CharField(max_length=100, verbose_name='title')
     image = models.ImageField(
         upload_to='banner/%Y/%m', # 此参数表示图片的路径，参数 Ym 可能表示年月？
         verbose_name='banner',

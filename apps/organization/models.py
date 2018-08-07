@@ -31,7 +31,7 @@ class CourseOrg(models.Model):
     address = models.CharField(max_length=150, verbose_name='org_addr')
     # 一个城市可以有很多课程机构，通过将city设置为外键，变成课程机构的一个字段
     # 可以让我们通过机构找到城市
-    city = models.ForeignKey(CityDict, verbose_name='the_city')
+    city = models.ForeignKey(CityDict, verbose_name='the_city', on_delete=models.CASCADE)
     add_time = models.DateTimeField(default=datetime.now, verbose_name='add_time')
 
     class Meta:
@@ -42,7 +42,7 @@ class CourseOrg(models.Model):
 class Teacher(models.Model):
     # 一个机构会有很多老师，所以我们在讲师表添加外键并把课程机构名称保存下来
     # 可以使我们通过讲师找到对应的机构
-    org = models.ForeignKey(CourseOrg, verbose_name='org')
+    org = models.ForeignKey(CourseOrg, verbose_name='org',  on_delete=models.CASCADE)
     name = models.CharField(max_length=50, verbose_name='teacher_name')
     work_years = models.IntegerField(default=0, verbose_name='teacher_year')
     work_company = models.CharField(max_length=50, verbose_name='work_company')
