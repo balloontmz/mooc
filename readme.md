@@ -81,3 +81,20 @@ class EmailVerifyRecordAdmin(object):
 
 verbose_name属性好像能够热更新？？？也就是该字段应该不输入数据库，只接受Django调用
 推测该属性只用于后台显示？？？网站前台是否有用？
+
+apps.py配置app的显示名称
+每个app下执行同样操作:
+
+# encoding: utf-8
+from django.apps import AppConfig
+
+
+class CoursesConfig(AppConfig):
+    name = 'courses'
+    verbose_name = u"课程"
+
+新建app时并没有引用apps的配置
+
+在app下的init.py中添加:
+
+default_app_config = "operation.apps.OperationConfig"
