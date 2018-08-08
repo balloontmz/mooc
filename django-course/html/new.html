@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <title>个人资料</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/js/plugins/queryCity/css/cityLayout.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/lq.datetimepick.css"/>
+
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/static/ueditor/ueditor.all.min.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0e1d8c29e648f303478b2f12e5f364c1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<section class="headerwrap headerwrap2">
+    <header>
+        <div  class="header2 header">
+            <div class="top">
+                <div class="wp">
+                    <div class="fl"><p>服务电话：<b>4001008031</b></p></div>
+                    <!--登录后跳转-->
+
+                    <div class="personal">
+                        <dl class="user fr">
+                            <dd>admin@admin.com<img class="down fr" src="/static/images/top_down.png"/></dd>
+                            <dt><img width="20" height="20" src="/uploads/avatar/default_big.png"/></dt>
+                        </dl>
+                        <div class="userdetail">
+                            <dl>
+                                <dt><img width="80" height="80" src="/uploads/avatar/default_big.png"/></dt>
+                                <dd>
+                                    <h2>四川卓景园林工程有限公司</h2>
+                                    <p>admin@admin.com</p>
+                                </dd>
+                            </dl>
+                            <div class="btn">
+                                <a class="personcenter fl" href="/user/home/">进入个人中心</a>
+                                <a class="fr" href="/user/logout/">退出</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/user/message/">
+                        <div class="msg-num"> <span id="MsgNum">1</span></div>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="middle">
+                <div class="wp">
+                    <a href="/"><img class="fl" src="/static/images/logo2.png"/></a>
+                    <h1>我的多米乐</h1>
+                </div>
+            </div>
+
+
+        </div>
+    </header>
+</section>
+
+
+
+<!--crumbs start-->
+<section>
+    <div class="wp">
+        <ul  class="crumbs">
+            <li><a href="/">首页</a>></li>
+            <li><a href="/user/home/">我的多米乐</a>></li>
+            <li>个人资料</li>
+        </ul>
+    </div>
+</section>
+<section>
+    <div class="wp list personal_list">
+        <div class="left">
+            <ul>
+                <li ><a href="/user/home/">我的主页</a></li>
+                <li  class="active2" ><a href="/user/info/">个人资料</a></li>
+                <li ><a href="/user/require/">已发布需求</a></li>
+                <li ><a href="/user/contract/">我的合同</a></li>
+                <li ><a href="/user/order/">我的订单</a></li>
+                <li ><a href="/user/diary/user/">日志与分享</a></li>
+                <li ><a href="/user/coll_com/">我的收藏</a></li>
+                <li ><a href="/user/evaluate/company/">我的评价</a></li>
+                <li ><a href="/user/appeal/">我的投诉</a></li>
+                <li >
+                    <a href="/user/message/" style="position: relative;">
+                        我的消息
+                        <span id="MsgDot">1</span>
+                    </a>
+                </li>
+                <li ><a target="_blank" href="http://101.200.218.178:8080/duomile/index.php?app=member">进入我的商城</a></li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <div class="personal_des ">
+                <div class="head" style="border:1px solid #eaeaea;">
+                    <h1>个人信息</h1>
+                </div>
+                <div class="inforcon">
+                    <div class="left" style="width:242px;">
+                        <iframe id='frameFile' name='frameFile' style='display: none;'></iframe>
+                        <form class="clearfix" id="jsAvatarForm" enctype="multipart/form-data" autocomplete="off" method="post" action="/user/avatar/upload/" target='frameFile'>
+                            <label class="changearea" for="avatarUp">
+                            <span id="avatardiv" class="pic">
+                                <img width="100" height="100" class="js-img-show" id="avatarShow" src="/uploads/avatar/default_big.png"/>
+                            </span>
+                            <span class="fl upload-inp-box" style="margin-left:70px;">
+                                <span class="button btn-green btn-w100" id="jsAvatarBtn">修改头像</span>
+                                <input type="file" name="avatar_url" id="avatarUp" class="js-img-up"/>
+                            </span>
+                            </label>
+                            <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+                        </form>
+                        <div style="border-top:1px solid #eaeaea;margin-top:30px;">
+                            <a class="button btn-green btn-w100" id="jsUserResetPwd" style="margin:80px auto;width:100px;">修改密码</a>
+                        </div>
+                    </div>
+                    <form class="perinform" id="jsEditUserForm" autocomplete="off">
+                        <ul class="right">
+                            <li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+                                <input type="text" name="nick_name" id="nick_name" value="四川卓景园林工程有限公司" maxlength="10">
+                                <i class="error-tips"></i>
+                            </li>
+                            <li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
+                                <input type="text" id="birth_day" name="birth_day" value="2016-03-10" readonly="readonly"/>
+                                <i class="error-tips"></i>
+                            </li>
+                            <li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
+                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender" value="male" checked="checked">男</label>
+                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" >女</label>
+                            </li>
+                            <li class="p_infor_city">区&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域：
+                                <input type="text" name="district_name" id="district_name" value="" placeholder="请选择区域" class="city_input  inputFocus proCityQueryAll proCitySelAll" autocomplete="off" readonly="" style="margin-left:16px;">
+                                <i class="error-tips"></i>
+                            </li>
+                            <li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
+                                <input class="borderno" type="text" name="mobile" readonly="readonly" value="18782902568" />
+                                <span class="changephone_btn green">[修改]</span>
+                            </li>
+                            <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
+                                <input class="borderno" type="text" name="email" readonly="readonly" value="admin@admin.com"/>
+                                <span class="green changeemai_btn">[修改]</span>
+                            </li>
+                            <li class="button heibtn">
+                                <input type="button" id="jsEditUserBtn" value="保存">
+                                <input type="hidden" name="uid" value="1" />
+                            </li>
+                            <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+<!--sidebar start-->
+<section>
+    <ul class="sidebar">
+        <li class="qq">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2023525077&site=qq&menu=yes"></a>
+        </li>
+        <li class="share">
+            <div class="bdsharebuttonbox"
+                 data-text="多米乐团购装修平台"
+                 data-desc="#多米乐#家装团购平台，全面改变传统家装行业消费习惯，让您的家装更简单！"
+                 data-comment="装修团购 规范报价 商家认证 资金托管 管家验收 真实点评 保修保障"
+                 data-url="/">
+                <span class="fl">分享到：</span>
+                <a href="#" class="bds_more" data-cmd="more"></a>
+                <a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a>
+                <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a>
+                <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a>
+                <a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a>
+                <a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a>
+            </div>
+        </li>
+        <li class="code">
+            <img class="sidecode" src="/static/images/code.jpg"/>
+        </li>
+        <li class="totop"></li>
+    </ul>
+</section>
+<!--sidebar end-->
+<!--header start-->
+<div class="dialog" id="jsDialog">
+    <!--提示弹出框-->
+    <div class="successbox dialogbox" id="jsSuccessTips">
+        <h1>成功提交</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="cont">
+            <h2>您的需求提交成功！</h2>
+            <p></p>
+        </div>
+    </div>
+    <div class="bidtips dialogbox promptbox" id="jsComfirmDialig">
+        <h1>确认提交</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="cont">
+            <h2>您确认提交吗？</h2>
+            <dd class="autoTxtCount">
+                <div class="button">
+                    <input type="button" class="fl half-btn" value="确定" id="jsComfirmBtn"/>
+                    <span class="fr half-btn jsCloseDialog">取消</span>
+                </div>
+            </dd>
+        </div>
+    </div>
+
+    <div class="resetpwdbox dialogbox" id="jsResetDialog">
+        <h1>修改密码</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="cont">
+            <form id="jsResetPwdForm" autocomplete="off">
+                <div class="box">
+                    <span class="word2" >新&nbsp;&nbsp;密&nbsp;&nbsp;码</span>
+                    <input type="password" id="pwd" name="password" placeholder="6-20位非中文字符"/>
+                </div>
+                <div class="box">
+                    <span class="word2" >确定密码</span>
+                    <input type="password" id="repwd" name="password2" placeholder="6-20位非中文字符"/>
+                </div>
+                <div class="error btns" id="jsResetPwdTips"></div>
+                <div class="button">
+                    <input id="jsResetPwdBtn" type="button" value="提交" />
+                </div>
+                <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+            </form>
+        </div>
+    </div>
+    <div class="dialogbox changephone changephone1" id="jsChangePhoneDialog">
+        <h1>修改手机号码</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <p>请输入新的手机号码</p>
+        <form id="jsChangePhoneForm" autocomplete="off">
+            <div class="box">
+                <input class="fl change_mobile" type="text" id="jsChangePhone" name="mobile" autocomplete="off" placeholder="输入重新绑定的手机号码">
+            </div>
+            <div class="box">
+                <input autocomplete="off" class="form-control-captcha find-password-captcha" id="find-password-captcha_1" name="captcha_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha find-password-captcha" id="find-password-captcha_0" name="captcha_0" placeholder="请输入验证码" type="hidden" value="0d06dc98fc978b390b2809bf918b8c69f7702b56" /> &nbsp;<img src="/captcha/image/0d06dc98fc978b390b2809bf918b8c69f7702b56/" alt="captcha" class="captcha" />
+            </div>
+            <div class="box">
+                <input class="fl" type="text" id="jsChangePhoneCode" name="mobile_code" placeholder="输入手机验证码"/>
+                <input class="getcode getting" type="button" id="jsChangePhoneCodeBtn" value="获取验证码">
+            </div>
+            <div class="error btns" id="jsChangePhoneTips"></div>
+            <div class="button">
+                <input type="button" value="完成" id="jsChangePhoneBtn"/>
+            </div>
+            <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+        </form>
+    </div>
+    <div class="dialogbox changeemai1 changephone" id="jsChangeEmailDialog">
+        <h1>修改邮箱</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <p>请输入新的邮箱地址</p>
+        <form id="jsChangeEmailForm" autocomplete="off">
+            <div class="box">
+                <input class="fl change_email" name="email" id="jsChangeEmail" type="text" placeholder="输入重新绑定的邮箱地址">
+            </div>
+            <div class="box">
+                <input class="fl email_code" type="text" id="jsChangeEmailCode" name="email_code" placeholder="输入邮箱验证码">
+                <input class="getcode getting" type="button" id="jsChangeEmailCodeBtn" value="获取验证码">
+            </div>
+            <div class="error btns change_email_tips" id="jsChangeEmailTips" >请输入...</div>
+            <div class="button">
+                <input class="changeemai_btn" id="jsChangeEmailBtn" type="button" value="完成"/>
+            </div>
+            <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+        </form>
+    </div>
+
+    <div class="releasebox dialogbox">
+        <h1>发布装修需求</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="cont">
+            <form id="jsPerfectForm1" autocomplete="off">
+                <input id="requireId" name="require_id" type="hidden"/>
+                <div class="box">
+                    <span class="word4">业主姓名</span>
+                    <input type="text" name="name" value="四川卓景园林工程有限公司" placeholder="请填写您的姓名"/>
+                </div>
+                <div class="box">
+                    <span class="word4">联系电话</span>
+                    <input type="text" name="mobile" value="18782902568" placeholder="请填写您的电话"/>
+                </div>
+                <div class="box tcitybox">
+                    <span class="word4">小区区域 </span>
+                    <input type="text" name="district_name" placeholder="请选择小区区域" class="city_input  inputFocus proCityQueryAll proCitySelAll" autocomplete="off" readonly="">
+                </div>
+                <div class="box">
+                    <span class="word4">小区名称</span>
+                    <input type="text" name="residential" placeholder="格式：2位以上中文英文数字字符" maxlength="30"/>
+                </div>
+                <div class="box">
+                    <span class="word4">房屋面积</span>
+                    <input type="text" name="size" placeholder="请填写房屋面积(整数)"/><span class="fr tareas">㎡</span>
+                </div>
+                <div class="box">
+                    <span class="word4">量房时间</span>
+                    <input class="laydate" type="text" name="measure_time" placeholder="请选择量房时间" readonly="" />
+                </div>
+                <div class="box">
+                    <span class="word4">量房要求</span>
+                    <select class="selectContainer" name="measure_type">
+                        <option value="">请选择</option>
+                        <option value="1">集中量房</option>
+                        <option value="2">分批次量房</option>
+                    </select>
+                </div>
+                <div class="box">
+                    <span class="word4">装修日期</span>
+                    <input class="laydate" type="text" name="deco_time" placeholder="请选择装修日期" readonly="" />
+                </div>
+                <div class="box">
+                    <span class="word4">预算费用</span>
+                    <select class="selectContainer" name="price_range">
+                        <option value="">选择预算费用</option>
+
+                        <option value="1">简单装修（800元/㎡以下）</option>
+
+                        <option value="2">中等装修（800~1200元/㎡）</option>
+
+                        <option value="3">精装修（1200元/㎡以上）</option>
+
+                        <option value="4">半包</option>
+
+                        <option value="5">全包</option>
+
+                    </select>
+                </div>
+                <div class="error btns " id="jsPerfetTips1"></div>
+                <div class="button">
+                    <input type="hidden" name="id"/>
+                    <input id="jsPerfectSubmit1" type="button" value="立即提交"/>
+                </div>
+                <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+            </form>
+        </div>
+    </div>
+    <div class="groupbox dialogbox groupbox02">
+        <h1>发布装修需求</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <p>请完善您的装修信息，装修公司会尽快联系您</p>
+        <form id="jsPerfectForm2" autocomplete="off">
+            <div class="box">
+                <span class="word4">业主姓名</span>
+                <input type="text" name="name" placeholder="请填写您的姓名"/>
+            </div>
+            <div class="box">
+                <span class="word4">联系电话</span>
+                <input type="text" name="mobile" placeholder="请填写您的电话"/>
+            </div>
+            <div class="box">
+                <span class="word4">小区区域 </span>
+                <input type="text" name="district_name" placeholder="请选择小区区域" class="city_input  inputFocus proCityQueryAll proCitySelAll" autocomplete="off" readonly="">
+            </div>
+            <div class="box">
+                <span class="word4">小区名称</span>
+                <input type="text" name="residential" placeholder="格式：2位以上中文英文数字字符"/>
+            </div>
+            <div class="box">
+                <span class="word4">房屋面积</span>
+                <input type="text" name="size" placeholder="请填写房屋面积(整数)"/><span class="fr">㎡</span>
+            </div>
+            <div class="box">
+                <span class="word4">量房时间</span>
+                <input class="laydate" type="text" name="measure_time" placeholder="请选择量房时间" readonly="" />
+            </div>
+            <div class="box">
+                <span class="word4">量房要求</span>
+                <select class="selectContainer" name="measure_type">
+                    <option value="">请选择</option>
+                    <option value="1">集中量房</option>
+                    <option value="2">分批次量房</option>
+                </select>
+            </div>
+            <div class="box">
+                <span class="word4">装修日期 </span>
+                <input class="laydate" type="text" name="deco_time" placeholder="请选择装修日期"  readonly="" />
+            </div>
+            <div class="box">
+                <span class="word4">预算费用</span>
+                <select class="selectContainer" name="price_range">
+                    <option value="">选择预算费用</option>
+
+                    <option value="1">简单装修（800元/㎡以下）</option>
+
+                    <option value="2">中等装修（800~1200元/㎡）</option>
+
+                    <option value="3">精装修（1200元/㎡以上）</option>
+
+                    <option value="4">半包</option>
+
+                    <option value="5">全包</option>
+
+                </select>
+            </div>
+            <div class="error btns " id="jsPerfetTips2"></div>
+            <div class="button">
+                <input type="hidden" name="company" id="jsCompanyId" />
+                <input id="jsPerfectSubmit2" type="button" value="立即提交"/>
+            </div>
+            <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+        </form>
+    </div>
+    <div class="groupbox dialogbox groupbox01">
+        <h1>继续完善装修需求</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <p>请完善您的装修需求，以便我们能为您提供更好的服务和装修设计方案。</p>
+        <form id="jsPerfectForm3" autocomplete="off">
+            <input id="mobile" name="mobile" type="hidden"/>
+            <input id="name" name="name" type="hidden"/>
+            <input id="districtName" name="district_name" type="hidden"/>
+            <input id="requireId" name="require_id" type="hidden"/>
+            <div class="box">
+                <span class="word4">小区名称</span>
+                <input type="text" name="residential" placeholder="格式为：2位以上中文英文数字字符" maxlength="30"/>
+            </div>
+            <div class="box">
+                <span class="word4">房屋面积</span>
+                <input type="text" name="size" placeholder="请填写房屋面积(整数)"/><span class="fr">㎡</span>
+            </div>
+            <div class="box">
+                <span class="word4">量房时间</span>
+                <input class="laydate" type="text" name="measure_time" placeholder="请选择量房时间" readonly="" />
+            </div>
+            <div class="box">
+                <span class="word4">量房要求</span>
+                <select class="selectContainer" name="measure_type">
+                    <option value="">请选择</option>
+                    <option value="1">集中量房</option>
+                    <option value="2">分批次量房</option>
+                </select>
+            </div>
+            <div class="box">
+                <span class="word4">装修日期 </span>
+                <input class="laydate" type="text" name="deco_time" placeholder="请选择装修日期" readonly="" />
+            </div>
+            <div class="box">
+                <span class="word4">预算费用</span>
+                <select class="selectContainer" name="price_range">
+                    <option value="">选择预算费用</option>
+
+                    <option value="1">简单装修（800元/㎡以下）</option>
+
+                    <option value="2">中等装修（800~1200元/㎡）</option>
+
+                    <option value="3">精装修（1200元/㎡以上）</option>
+
+                    <option value="4">半包</option>
+
+                    <option value="5">全包</option>
+
+                </select>
+            </div>
+            <div class="error btns " id="jsPerfetTips3"></div>
+            <div class="button">
+                <input id="jsPerfectSubmit3" type="button" value="立即提交"/>
+            </div>
+            <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+        </form>
+    </div>
+    <div class="loginbox dialogbox">
+        <h1>账号登录</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="cont">
+            <form id="jsLoginForm" autocomplete="off">
+                <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+                <div class="box">
+                    <span class="word3">用户名</span>
+                    <input type="text" name="account_l" id="account_l" placeholder="手机号/邮箱" />
+                </div>
+                <div class="box">
+                    <span class="word2">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                    <input type="password" name="password_l" id="password_l" placeholder="请输入您的密码"/>
+                </div>
+                <div class="error btns login-form-tips" id="jsLoginTips"></div> <!--登录错误提示-->
+                <div class="btns">
+                    <span><input type="checkbox" id="jsAutoLogin" />&nbsp;自动登录</span>
+                    <span class="forget btn fr">忘记密码</span>
+                </div>
+                <div class="button">
+                    <input type="button" value="登录" id="jsLoginBtn" />
+                </div>
+                <div class="btns">
+                    <span class="fr">没有多米乐账号？<span class="regist btn">立即注册</span></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="registbox dialogbox" id="jsRegBox">
+        <h1>账号注册</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="cont">
+            <div class="tab">
+                <div class="active fl jsRegTab">手机注册</div>
+                <div class="fr jsRegTab">邮箱注册</div>
+            </div>
+            <div class="tab-box jsTabBox">
+                <form id="mobile_register_form" autocomplete="off">
+                    <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+                    <div class="box">
+                        <span class="word3">手机号</span>
+                        <input id="jsRegMobile" name="account" type="text" placeholder="请输入您的手机号码"/>
+                    </div>
+                    <div class="box" id="jsRefreshCode">
+                        <span class="word3">验证码</span>
+                        <input autocomplete="off" class="form-control-captcha mobile-register-captcha" id="mobile-register-captcha_1" name="captcha_m_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha mobile-register-captcha" id="mobile-register-captcha_0" name="captcha_m_0" placeholder="请输入验证码" type="hidden" value="e0b6baf8b9af614101c5238e76fae9d9910fe157" /> &nbsp;<img src="/captcha/image/e0b6baf8b9af614101c5238e76fae9d9910fe157/" alt="captcha" class="captcha" />
+                    </div>
+                    <div class="box">
+                        <span class="word3">短信验证码</span>
+                        <input id="jsPhoneRegCaptcha" name="mobile_code" type="text" placeholder="请输入手机验证码"/>
+                        <input id="jsSendCode" class="sendcode" value="发送验证码" />
+                    </div>
+                    <div class="box">
+                        <span class="word2">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                        <input id="jsPhoneRegPwd" name="password_m" type="password" placeholder="请输入6-20位非中文字符密码"/>
+                    </div>
+                    <div class="error btns" id="jsMobileTips"></div><!--手机注册错误提示-->
+                    <div class="btns">
+                        <span class="fl">已有账号？<span class="login btn">立即登录</span></span>
+                    </div>
+                    <div class="button">
+                        <input type="button" id="jsMobileRegBtn" value="注册并登录" />
+                    </div>
+                </form>
+            </div>
+            <div class="tab-box hide jsTabBox">
+                <form id="email_register_form"  autocomplete="off">
+                    <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+                    <div class="box">
+                        <span class="word2">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</span>
+                        <input type="text" id="id_email" name="account" placeholder="请输入您的邮箱地址"/>
+                    </div>
+                    <div class="box">
+                        <span class="word2">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                        <input type="password" id="id_password" name="password" placeholder="请输入6-20位非中文字符密码"/>
+                    </div>
+                    <div class="box">
+                        <span class="word3">验证码</span>
+                        <input autocomplete="off" class="form-control-captcha email-register-captcha" id="email-register-captcha_1" name="captcha_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha email-register-captcha" id="email-register-captcha_0" name="captcha_0" placeholder="请输入验证码" type="hidden" value="db248a5a3c0ed02295ced74a484a478cbf04f2c9" /> &nbsp;<img src="/captcha/image/db248a5a3c0ed02295ced74a484a478cbf04f2c9/" alt="captcha" class="captcha" />
+                    </div>
+                    <div class="error btns" id="jsEmailTips"></div><!--邮箱注册错误提示-->
+                    <div class="btns">
+                        <span class="fl">已有账号？<span class="login btn">立即登录</span></span>
+                    </div>
+                    <div class="button" id="regist1">
+                        <input type="button" id="jsEmailRegBtn" value="注册并登录" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div  class="noactivebox dialogbox" id="jsUnactiveForm" >
+        <h1>邮件验证提示</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="center">
+            <img src="/static/images/send.png"/>
+            <p>我们已经向您的邮箱<span class="green" id="jsEmailToActive">12@13.com</span>发送了邮件，<br/>为保证您的账号安全，请及时验证邮箱</p>
+            <p class="a"><a class="btn" id="jsGoToEmail" target="_blank" href="http://mail.qq.com">去邮箱验证</a></p>
+            <p class="zy_success upmove"></p>
+            <p style="display: none;" class="sendE2">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以再次发送验证邮件（<span class="c5c">60s</span>）</p>
+            <p class="sendE">没收到，您可以查看您的垃圾邮件和被过滤邮件，<br/>也可以<span class="c5c green" id="jsSenEmailAgin" style="cursor: pointer;">再次发送验证邮件</span></p>
+        </div>
+    </div>
+    <div class="resetpassbox dialogbox" id="jsSetNewPwd">
+        <h1>重新设置密码</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <p class="green">请输入新密码</p>
+        <form id="jsSetNewPwdForm">
+            <div class="box">
+                <span class="word2">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                <input type="password" name="password" id="jsResetPwd" placeholder="请输入新密码"/>
+            </div>
+            <div class="box">
+                <span class="word2">确&nbsp;认&nbsp;密&nbsp;码</span>
+                <input type="password" name="password2" id="jsResetPwd2" placeholder="请再次输入新密码"/>
+            </div>
+            <div class="box">
+                <span class="word2">验&nbsp;&nbsp;证&nbsp;&nbsp;码</span>
+                <input type="text" name="code" id="jsResetCode" placeholder="请输入手机验证码"/>
+            </div>
+            <div class="error btns" id="jsSetNewPwdTips"></div>
+            <div class="button">
+                <input type="hidden" name="mobile" id="jsInpResetMobil" />
+                <input id="jsSetNewPwdBtn" type="button" value="提交" />
+            </div>
+            <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+        </form>
+    </div>
+    <div class="forgetbox dialogbox">
+        <h1>忘记密码</h1>
+        <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+        <div class="cont">
+            <form id="jsFindPwdForm" autocomplete="off">
+                <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP' />
+                <div class="box">
+                    <span class="word2" >账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                    <input type="text" id="account" name="account" placeholder="手机/邮箱"/>
+                </div>
+                <div class="box">
+                    <span class="word3">验证码</span>
+                    <input autocomplete="off" class="form-control-captcha find-password-captcha" id="find-password-captcha_1" name="captcha_f_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha find-password-captcha" id="find-password-captcha_0" name="captcha_f_0" placeholder="请输入验证码" type="hidden" value="5f3c00e47fb1be12d2fd15b9a860711597721b3f" /> &nbsp;<img src="/captcha/image/5f3c00e47fb1be12d2fd15b9a860711597721b3f/" alt="captcha" class="captcha" />
+                </div>
+                <div class="error btns" id="jsForgetTips"></div><!--忘记密码错误-->
+                <div class="button">
+                    <input type="hidden" name="sms_type" value="1">
+                    <input id="jsFindPwdBtn" type="button" value="提交" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="bg" id="dialogBg"></div>
+
+<input id="isLogin" type="hidden" value="True"/>
+<!--弹出省省市-->
+<div class="provinceCityAll">
+    <div class="tabs clearfix">
+        <ul class="">
+            <!--     <li><a href="javascript:" class="current" tb="hotCityAll">热门城市</a></li>-->
+            <li><a href="javascript:" class="current" tb="provinceAll">省份</a></li>
+            <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>
+            <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>
+        </ul>
+    </div>
+    <div class="con">
+        <div class="hotCityAll invis">
+            <div class="pre"><a></a></div>
+            <div class="list">
+                <ul>
+                    <!-- 					<li><a href="javascript:"  class="current">南京</a></li> -->
+                </ul>
+            </div>
+            <div class="next"><a class="can"></a></div>
+        </div>
+        <div class="provinceAll invis">
+            <div class="pre"><a></a></div>
+            <div class="list">
+                <ul>
+                    <!-- 					<li><a href="javascript:"  class="current">江西省</a></li> -->
+                </ul>
+            </div>
+            <div class="next"><a class="can"></a></div>
+        </div>
+        <div class="cityAll invis">
+            <div class="pre"><a></a></div>
+            <div class="list">
+                <ul>
+                    <!-- 					<li><a href="javascript:"  class="current">南京</a></li> -->
+                </ul>
+            </div>
+            <div class="next"><a class="can"></a></div>
+        </div>
+        <div class="countyAll invis">
+            <div class="pre"><a></a></div>
+            <div class="list">
+                <ul>
+                </ul>
+            </div>
+            <div class="next"><a class="can"></a></div>
+        </div>
+    </div>
+</div>
+<script src="/static/js/selectUi.js" type='text/javascript'></script>
+<script type="text/javascript" src="/static/js/plugins/laydate/laydate.js"></script>
+<script src="/static/js/plugins/layer/layer.js"></script>
+<script src="/static/js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+<script src="/static/js/unslider.js" type="text/javascript"></script>
+<script src="/static/js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
+<script src="/static/js/validateDialog.js"  type="text/javascript"></script>
+<script src="/static/js/deco-common.js"  type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+    //投诉
+    function addAppeal($btn){
+        var $jsComplaintTips = $("#jsComplaintTips"),
+                $jsComplaintForm = $("#jsComplaintForm"),
+                verify = verifyDialogSubmit(
+                        [
+                            {id: '#jsDesc', tips: Dml.Msg.epComplaint, require: true}
+                        ]
+                );
+        if(!verify){
+            return;
+        }
+        $.ajax({
+            cache:false,
+            type:"POST",
+            dataType:"json",
+            url:"/user/add_appeal/",
+            data:$jsComplaintForm.serialize(),
+            async:true,
+            beforeSend:function(XMLHttpRequest){
+                $btn.val("发送中...");
+                $btn.attr("disabled","disabled");
+            },
+            success: function(data) {
+                if(data.status == "success"){
+                    Dml.fun.showTipsDialog({
+                        title: '提交成功',
+                        h2: '提交投诉成功！'
+                    });
+                    $jsComplaintForm[0].reset();
+                    Dml.fun.winReload();
+                }else{
+                    Dml.fun.showErrorTips($jsComplaintTips, "提交投诉失败！");
+                }
+            },
+            complete: function(XMLHttpRequest){
+                $btn.val("立即提交");
+                $btn.removeAttr("disabled");
+            }
+        })
+    }
+
+    //申请退款
+    function addRefund($btn){
+        var $jsRefundTips = $("#jsRefundTips"),
+                $jsRefundForm = $("#jsRefundForm"),
+                verify = verifyDialogSubmit(
+                        [
+                            {id: '#jsReason', tips: Dml.Msg.epReason, require: true}
+                        ]
+                );
+        if(!verify){
+            return;
+        }
+        $.ajax({
+            cache:false,
+            type:"POST",
+            dataType:"json",
+            url:"/user/refund/"+ $('#jsOrderNum').val() +"/",
+            data:$jsRefundForm.serialize(),
+            async:true,
+            beforeSend:function(XMLHttpRequest){
+                $btn.val("发送中...");
+                $btn.attr("disabled","disabled");
+            },
+            success: function(data) {
+                if(data.status == "success"){
+                    Dml.fun.showTipsDialog({
+                        title: '提交成功',
+                        h2: '申请退款提交成功！'
+                    });
+                    $jsRefundForm[0].reset();
+                    Dml.fun.winReload();
+                }else{
+                    Dml.fun.showErrorTips($jsRefundTips, "申请退款失败！");
+                }
+            },
+            complete: function(XMLHttpRequest){
+                $btn.val("立即提交");
+                $btn.removeAttr("disabled");
+            }
+        })
+    }
+
+    //团购评价
+    function addEvlGroup($btn){
+        var $jsRefundTips = $("#jsGroupTips"),
+                $jsGroupForm = $("#jsGroupForm"),
+                verify = verifyDialogSubmit(
+                        [
+                            {id: '#groupComments', tips: Dml.Msg.epGroupComments, require: true}
+                        ]
+                );
+        if(!verify){
+            return;
+        }
+        $.ajax({
+            cache:false,
+            type:"POST",
+            dataType:"json",
+            url:"/user/evaluate/group/add/",
+            data:$jsGroupForm.serialize(),
+            async:true,
+            beforeSend:function(XMLHttpRequest){
+                $btn.val("发送中...");
+                $btn.attr("disabled","disabled");
+            },
+            success: function(data) {
+                if(data.status == "success"){
+                    Dml.fun.showTipsDialog({
+                        title: '提交成功',
+                        h2: '团购评价提交成功！'
+                    });
+                    $jsGroupForm[0].reset();
+                    Dml.fun.winReload();
+                }else{
+                    Dml.fun.showErrorTips($jsRefundTips, "团购评价失败！");
+                }
+            },
+            complete: function(XMLHttpRequest){
+                $btn.val("立即提交");
+                $btn.removeAttr("disabled");
+            }
+        })
+    }
+
+    //管家评价
+    function addEvlSupervisor($btn){
+        var $jsRefundTips = $("#jsSupervisorTips"),
+                $jsSupervisorForm = $("#jsSupervisorForm"),
+                verify = verifyDialogSubmit(
+                        [
+                            {id: '#hkComments', tips: Dml.Msg.epHkComments, require: true}
+                        ]
+                );
+        if(!verify){
+            return;
+        }
+        $.ajax({
+            cache:false,
+            type:"POST",
+            dataType:"json",
+            url:"/user/evaluate/hk/add/",
+            data:$jsSupervisorForm.serialize(),
+            async:true,
+            beforeSend:function(XMLHttpRequest){
+                $btn.val("发送中...");
+                $btn.attr("disabled","disabled");
+            },
+            success: function(data) {
+                if(data.status == "success"){
+                    Dml.fun.showTipsDialog({
+                        title: '提交成功',
+                        h2: '管家评价提交成功！'
+                    });
+                    $jsSupervisorForm[0].reset();
+                    Dml.fun.winReload();
+                }else{
+                    Dml.fun.showErrorTips($jsRefundTips, "管家评价失败！");
+                }
+            },
+            complete: function(XMLHttpRequest){
+                $btn.val("立即提交");
+                $btn.removeAttr("disabled");
+            }
+        })
+    }
+
+    $(function(){
+        $('.Releasebtn2').on('click', function(){
+            $('.releasebox > h1').html('发布装修需求');
+            Dml.fun.showDialog('.releasebox', '#jsPerfetTips1');
+            $('#jsPerfectSubmit1').off('click').on('click',function(){
+                perfect_demand_form_submit({
+                    jsPerfectSubmit: this,
+                    jsPerfectForm: '#jsPerfectForm1',
+                    jsPerfetTips:'#jsPerfetTips1'
+                });
+            });
+        });
+
+//申请退款
+        $('.refundbtn').on('click', function(){
+            var orderNum = $(this).attr('data-order-num');
+            $('#jsOrderNum').val(orderNum);
+            Dml.fun.showDialog('#jsRefundDialog', '#jsRefundTips');
+        });
+        $('#jsRefundBtn').on('click' ,function(){
+            addRefund($(this));
+        });
+
+//投诉
+        $('.Releasebtn').click(function(){
+            Dml.fun.showDialog('#jsComplaintDialog', '#jsComplaintTips');
+        });
+        $('#jsComplaintBtn').on('click', function(){
+            addAppeal($(this));
+        });
+
+//团购评价
+        $('.evlbtn').on('click', function(){
+            var _self = $(this),
+                    gName = _self.attr('data-gname'),
+                    gTime = _self.attr('data-gtime'),
+                    gImage = _self.attr('data-gimage'),
+                    gId = _self.attr('data-gid'),
+                    gOrderNum =_self.attr('data-gordernum'),
+                    sDetail = '<dt><img width="100" height="80" src="'+ gImage +'"/></dt>'+
+                            '<dd>'+
+                            '<h1 title="'+ gName +'">'+ gName.substr(0,10) +'</h1>'+
+                            '<span>团购时间：'+ gTime +'</span>'+
+                            '</dd>';
+
+            $('#jsGroupDetail').html(sDetail);
+            $('#groupId').val(gId);
+            $('#orderNo').val(gOrderNum);
+            Dml.fun.showDialog('#jsGroupDialog', '#jsGroupTips');
+        });
+        $('#jsGroupBtn').on('click', function(){
+            addEvlGroup($(this));
+        });
+
+        //管家评价
+        $('.jsEvlSupervisor').on('click', function(){
+            var _self = $(this),
+                    sName = _self.attr('data-name'),
+                    sYear = _self.attr('data-year'),
+                    sImage = _self.attr('data-image'),
+                    sAuth = _self.attr('data-auth'),
+                    sId =  _self.attr('data-sId'),
+                    sDiaryId = _self.attr('data-diaryid'),
+                    sDetail = '<dt><img width="120" height="100" src="'+ sImage +'"/></dt>'+
+                            '<dd class="">'+
+                            '<h1>'+ sName +'&nbsp;&nbsp;&nbsp;<span class="key">'+ (sAuth == 'True'?'已认证':'') +'</span></h1>'+
+                            '<p><span>从业年限：</span>'+ sYear +'年</p>'+
+                            '<p><span>收费标准：</span>承接所有价格</p>'+
+                            '</dd>';
+
+            $('#jsSupervisorBox').html(sDetail);
+            $('#hkId').val(sId);
+            $('#diaryId').val(sDiaryId);
+            Dml.fun.showDialog('#jsSupervisorDialog', '#jsSupervisorTips');
+        });
+        $('#jsSupervisorBtn').on('click' ,function(){
+            addEvlSupervisor($(this));
+        });
+    });
+
+
+</script>
+
+
+
+<script src='/static/js/selectUi.js' type='text/javascript'></script>
+<script src='/static/js/plugins/jquery.upload.js' type='text/javascript'></script>
+<script src="/static/js/validate.js" type="text/javascript"></script>
+<script src="/static/js/deco-user.js"></script>
+
+<script>
+
+
+
+
+
+
+
+    var shareUrl = '',
+            shareText = '',
+            shareDesc = '',
+            shareComment = '';
+    $(function () {
+        $(".bdsharebuttonbox a").mouseover(function () {
+            var type = $(this).attr('data-cmd'),
+                    $parent = $(this).parent('.bdsharebuttonbox'),
+                    fxurl = $parent.attr('data-url'),
+                    fxtext = $parent.attr('data-text'),
+                    fxdesc = $parent.attr('data-desc'),
+                    fxcomment = $parent.attr('data-comment');
+            switch (type){
+                case 'tsina':
+                case 'tqq':
+                case 'renren':
+                    shareUrl = fxurl;
+                    shareText = fxdesc;
+                    shareDesc = '';
+                    shareComment = '';
+                    break;
+                default :
+                    shareUrl = fxurl;
+                    shareText = fxtext;
+                    shareDesc = fxdesc;
+                    shareComment = fxcomment;
+                    break;
+            }
+        });
+    });
+    function SetShareUrl(cmd, config) {
+        if (shareUrl) {
+            config.bdUrl = "http://www.domile.com.cn" + shareUrl;
+        }
+        if(shareText){
+            config.bdText = shareText;
+        }
+        if(shareDesc){
+            config.bdDesc = shareDesc;
+        }
+        if(shareComment){
+            config.bdComment = shareComment;
+        }
+
+        return config;
+    }
+    window._bd_share_config = {
+        "common": {
+            "onBeforeClick":SetShareUrl,
+            "bdPic":"http://www.domile.com.cn/static/images/logo2.png",
+            "bdMini":"2",
+            "searchPic":"1",
+            "bdMiniList":false
+        },
+        "share": {
+            "bdSize":"16"
+        }
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>

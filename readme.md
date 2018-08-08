@@ -98,3 +98,26 @@ class CoursesConfig(AppConfig):
 在app下的init.py中添加:
 
 default_app_config = "operation.apps.OperationConfig"
+
+> <form action="{% url 'login' %}" method="post" autocomplete="off">
+                    <div class="form-group marb20 {% if login_form.username.errors %} errorput{% endif %}">
+                        <label>用&nbsp;户&nbsp;名</label>
+                        <input name="username" id="account_l" type="text" placeholder="手机号/邮箱" />
+                    </div>
+                    <div class="form-group marb8 {% if login_form.password.errors %} errorput{% endif %}">
+                        <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                        <input name="password" id="password_l" type="password" placeholder="请输入您的密码" />
+                    </div>
+<div class="error btns login-form-tips" id="jsLoginTips">
+{% for key, error in login_form.errors.items %}
+{{ error }}
+{% endfor %}
+{{ msg }}</div>
+                     <div class="auto-box marb38">
+
+                        <a class="fr" href="{% url "forget_pwd" %}">忘记密码？</a>
+                     </div>
+                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />  #此处代码如果加上id就会post->'/user/login'不知道为什么
+                <input type="hidden" name="next" value="{{ redirect_url }}" />
+                {% csrf_token %}
+                </form>
