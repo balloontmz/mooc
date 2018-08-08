@@ -78,3 +78,6 @@ default-character-set=utf8
 class EmailVerifyRecordAdmin(object):
     # 配置我们后台需要显示的列。
     list_display = ['code', 'email', 'send_type', 'send_time']
+
+verbose_name属性好像能够热更新？？？也就是该字段应该不输入数据库，只接受Django调用
+推测该属性只用于后台显示？？？网站前台是否有用？
