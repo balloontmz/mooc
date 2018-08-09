@@ -126,3 +126,12 @@ default_app_config = "operation.apps.OperationConfig"
 在url中调用Loginview的as_view方法需要加上括号，进行调用。
 Django的form进行表单验证并把error值传到前台。
 is_valid方法，验证表单
+
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '1956354744@qq.com'
+EMAIL_HOST_PASSWORD = 'sjujbnzdrdaaegjb'
+EMAIL_USE_TLS = True
+EMAIL_FROM = '1956354744@qq.com'
+此处的EMAIL_FROM必须和登录账户相同，不然无法发送验证邮件

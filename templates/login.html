@@ -41,8 +41,8 @@
             <p class="fl hd-tips">慕学网，在线学习平台！</p>
             <ul class="fr hd-bar">
                 <li>服务电话：<span>33333333</span></li>
-                <li class="active"><a href="login.html">[登录]</a></li>
-                <li><a href="register.html">[注册]</a></li>
+                <li class="active"><a href="{% url 'login' %}">[登录]</a></li>
+                <li><a href="{% url 'register' %}">[注册]</a></li>
             </ul>
         </div>
     </div>
@@ -69,11 +69,11 @@
             <div class="fl form-box">
                 <h2>帐号登录</h2>
                  <form action="/login/" method="post" autocomplete="off"> <!-- 此处有修改 -->
-                    <div class="form-group marb20" {% if login_form.username.errors %}errorput{% endif %}> <!-- 此处需要注意,没生效,推测是css样式的问题 -->
+                    <div class="form-group marb20" {% if login_form.errors.username %}errorput{% endif %}> <!-- 此处需要注意,没生效,推测是css样式的问题 -->
                         <label>用&nbsp;户&nbsp;名</label>
                         <input name="username" id="account_l" type="text" placeholder="手机号/邮箱" /> <!-- 此处name属性作为键值的键传递给后台 -->
                     </div>
-                    <div class="form-group marb8"{% if login_form.password.errors %}errorput{% endif %}>
+                    <div class="form-group marb8"{% if login_form.errors.password %}errorput{% endif %}>
                         <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                         <input name="password" id="password_l" type="password" placeholder="请输入您的密码" /> <!-- 此处name属性作为键值的键传递给后台 -->
                     </div>
@@ -91,7 +91,7 @@
                      <!-- 本行删除了 id="jsLoginBtn" 会造成bug,查看代码后猜测是js的参数问题，还是说后面有所改动？ -->
                      {%  csrf_token %} <!-- django机制，必须要有 -->
                 </form>
-                <p class="form-p">没有慕学网帐号？<a href="register.html">[立即注册]</a></p>
+                <p class="form-p">没有慕学网帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
             </div>
         </div>
     </div>

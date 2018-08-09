@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'organization',
     'xadmin',
     'crispy_forms',
+    'captcha',
 ]
 # 重载AUTH_USER_MODEL (用来干嘛？) 为了使UserProfile生效：可能和后面相关？
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -138,7 +139,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),  # 此处忘记加逗号报错，可能是关于参数格式的问题
 )
-
+# 重载authenticate的配置
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
 )
+
+# 发送邮件的setting设置
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '1956354744@qq.com'
+EMAIL_HOST_PASSWORD = 'sjujbnzdrdaaegjb'
+EMAIL_USE_TLS = True
+EMAIL_FROM = '1956354744@qq.com'
