@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path
 import xadmin
 from django.views.generic import TemplateView
-from users.views import user_login
+from users.views import LoginView
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
-    path('login/', user_login, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
 ]

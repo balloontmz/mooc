@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login  # 在类中重载了为何�
 from django.contrib.auth.backends import ModelBackend
 from .models import UserProfile
 from django.db.models import Q
+from django.views.generic.base import View
+from .forms import LoginForm
 
 
 # Create your views here.
@@ -49,4 +51,41 @@ def user_login(request):
         # render三变量: request 模板名称 一个字典写明传给前端的值
         return render(request, "login.html", {})
 
+
+class LoginView(View):
+    # 该类能直接调用get方法免去判断
+
+    def get(self, request):
+        # render 就是渲染html 返回用户
+        # render三变量： request 模板名称 一个传递参数的字典
+        return render(request, 'login.html', {})
+
+    def post(self, request):
+        # 该类实例化需要一个字典dict： request.POST就是一个QueryDict所以直接传入
+        # POST中的username、password，会对应到form中
+        login_form = LoginForm(request.POST)
+        # is_valid判断我们字段是否有错
+        if login_form.is_valid():
+            # 取不到时为空
+            user_name = request.POST.get('username', '')
+            pass_word = request.POST.get('password', '')
+            # 成功返回user对象
+            user = authenticate(username=user_name, password=pass_word)
+
+            # 如果不是null表示验证成功
+            if user is not None:
+                # 以下函数实际是吧user写入request
+                login(request, user)
+                # 跳转到首页，此时的request带上了user对象的状态
+                return render(request, 'index.html')
+            # 仅当账户密码出错的时候
+            else:
+                return render(request, 'login.html', {'msg': '用户名或密码错误！ '})
+        # 没有成功说明有值是None，并再次跳转回主页面
+        else:
+            return render(
+                request, 'login.html',{
+                    'login_form': login_form
+                }
+            )
 

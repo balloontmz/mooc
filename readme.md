@@ -117,7 +117,12 @@ default_app_config = "operation.apps.OperationConfig"
 
                         <a class="fr" href="{% url "forget_pwd" %}">忘记密码？</a>
                      </div>
-                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />  #此处代码如果加上id就会post->'/user/login'不知道为什么
+                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />  #此处代码如果加上id就会post->'/user/login'不知道为什么                                  
                 <input type="hidden" name="next" value="{{ redirect_url }}" />
                 {% csrf_token %}
                 </form>
+
+写了一个类继承Django的view，然后写了get post方法(get/post的if是Django替我们完成的)
+在url中调用Loginview的as_view方法需要加上括号，进行调用。
+Django的form进行表单验证并把error值传到前台。
+is_valid方法，验证表单
