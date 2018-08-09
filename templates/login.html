@@ -77,13 +77,13 @@
                         <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                         <input name="password" id="password_l" type="password" placeholder="请输入您的密码" /> <!-- 此处name属性作为键值的键传递给后台 -->
                     </div>
-                    <div class="error btns login-form-tips" id="jsLoginTips"></div>
+                    <div class="error btns login-form-tips" id="jsLoginTips">{{ msg }}</div>  <!-- 此处之前忘记加参数变量，导致错误密码无显示 -->
                      <div class="auto-box marb38">
                         <label><input type="checkbox" id="jsAutoLogin"> 自动登录</label>
                         <a class="fr" href="forgetpwd.html">忘记密码？</a>
                      </div>
-                     <input class="btn btn-green" type="submit" value="立即登录 > " />
-                     <!-- 本行删除了 id="jsLoginBtn" 会造成bug -->
+                     <input class="btn btn-green"  type="submit" value="立即登录 > " />
+                     <!-- 本行删除了 id="jsLoginBtn" 会造成bug,查看代码后猜测是js的参数问题，还是说后面有所改动？ -->
                      {%  csrf_token %} <!-- django机制，必须要有 -->
                 </form>
                 <p class="form-p">没有慕学网帐号？<a href="register.html">[立即注册]</a></p>

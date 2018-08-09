@@ -138,3 +138,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),  # 此处忘记加逗号报错，可能是关于参数格式的问题
 )
+
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)

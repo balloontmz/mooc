@@ -1,8 +1,26 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login  # 在类中重载了为何还要导入，为何要在setting中加入本文件中重载的类以及方法
+from django.contrib.auth.backends import ModelBackend
+from .models import UserProfile
+from django.db.models import Q
 
 
 # Create your views here.
+class CustomBackend(ModelBackend):
+    def authenticate(self, username=None, password=None, **kwargs):
+        try:
+            # Q 采用并集运算，只能取到其中一个（不懂）
+            user = UserProfile.objects.get(Q(username=username) | Q(email=username))
+
+            # django的后台中对密码加密，所以不能password=password
+            # UserProfile继承的AbstractUser中有 def check_password(self, raw_password)
+
+            if user.check_password(password):
+                return user
+        except Exception as e:
+            return None
+
+
 def user_login(request):
     # 前端向后端发送的请求方式: get 或post
 
@@ -30,3 +48,5 @@ def user_login(request):
         # render就是渲染html返回用户
         # render三变量: request 模板名称 一个字典写明传给前端的值
         return render(request, "login.html", {})
+
+
