@@ -135,3 +135,8 @@ EMAIL_HOST_PASSWORD = 'sjujbnzdrdaaegjb'
 EMAIL_USE_TLS = True
 EMAIL_FROM = '1956354744@qq.com'
 此处的EMAIL_FROM必须和登录账户相同，不然无法发送验证邮件
+
+建议自行走一遍注册，登录，忘记密码。重置密码。
+错误的激活链接，错误的重置链接。值回填，form报错
+
+更多: 重置密码链接是否被点击过，过期时间。

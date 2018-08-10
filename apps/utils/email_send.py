@@ -41,7 +41,8 @@ def send_register_email(email, send_type='register'):
         email_body = loader.render_to_string(
             'email_register.html',
             {
-                'active_code': code
+                'params': 'avtive',
+                'active_code': code,
             }
         )
         msg = EmailMessage(email_title, email_body, EMAIL_FROM, [email])
@@ -49,5 +50,19 @@ def send_register_email(email, send_type='register'):
         # 使用Django内置函数完成邮件发送。四个参数： 主题，邮件内容，从哪里来，接收者list
         send_status = msg.send()
         # 如果发送成功
+        if send_status:
+            pass
+    elif send_type == 'forget':
+        email_title = 'mooc找回密码链接'
+        email_body = loader.render_to_string(
+            'email_register.html',
+            {
+                'params': 'reset',
+                'active_code': code,
+            }
+        )
+        msg = EmailMessage(email_title, email_body, EMAIL_FROM, [email])
+        msg.content_subtype = 'html'
+        send_status = msg.send()
         if send_status:
             pass

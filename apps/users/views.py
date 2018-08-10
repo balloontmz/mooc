@@ -4,7 +4,7 @@ from django.contrib.auth.backends import ModelBackend
 from .models import UserProfile, EmailVerifyRecord
 from django.db.models import Q
 from django.views.generic.base import View
-from .forms import LoginForm, RegisterForm, ActiveForm
+from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm
 from django.contrib.auth.hashers import make_password
 from utils.email_send import send_register_email
 
@@ -147,3 +147,68 @@ class ActiveUserView(View):
                 return render(request, 'login.html', {'msg': '激活成功，请登录'})
         else:
             return render(request, 'register.html', {'msg': '您的激活链接无效', 'active_form': active_form})
+
+
+# 用户忘记密码的处理view
+class ForgetPwdView(View):
+    # get方法直接返回页面
+    def get(self, request):
+        forget_form = ForgetForm()
+        return render(request, 'forgetpwd.html', {'forget_form': forget_form})
+
+    def post(self, request):
+        forget_form = ForgetForm(request.POST)
+        # form合法情况下取出email
+        if forget_form.is_valid():
+            email = request.POST.get('email', '')
+            # 发送找回密码邮件
+            send_register_email(email, 'forget')
+            # 发送完毕返回登录页面并显示发送邮件成功
+            return render(request, 'login.html', {'msg': '重置密码邮件发送成功，请注意查收'})
+        # 如果表单失败则是验证码验证失败等
+        else:
+            return render(request, 'forgetpwd.html', {'forget_form': forget_form})
+
+
+# 重置密码的view
+class ResetView(View):
+    def get(self, request, active_code):
+        # 验证邮箱验证记录是否存在
+        all_record = EmailVerifyRecord.objects.filter(code=active_code)
+        # 如果不为空也就是有用户
+        active_form = ActiveForm()
+        if all_record:
+            for record in all_record:
+                # 获取对应的邮箱
+                email = record.email
+                # 将email传回来
+                return render(request, 'password_reset.html', {'email': email})
+        else:
+            return render(
+                request, 'forgetpwd.html', {
+                    'msg': '您的链接无效，请重新请求', 'active_form': active_form,
+                }
+            )
+
+
+# 改变密码的view
+class ModifyPwdView(View):
+    def post(self, request):
+        modifypwd_form = ModifyPwdForm(request.POST)
+        if modifypwd_form.is_valid():
+            pwd1 = request.POST.get('password1', '')
+            pwd2 = request.POST.get('password2', '')
+            email = request.POST.get('email', '')
+            # 如果两次密码不相等，返回错误信息
+            if pwd1 != pwd2:
+                return render(request, 'password_reset.html', {'email': email, 'msg': '密码不一致'})
+            # 如果密码一致
+            user = UserProfile.objects.get(username=email)
+            # 加密成密文
+            user.password = make_password(pwd2)
+            user.save()
+            return render(request, 'login.html', {'email': email, 'modifypwd_form': modifypwd_form})
+        # 验证失败说明密码位数不够
+        else:
+            email = request.POST.get('email', '')
+            return render(request, 'password_reset.html', {'email': email, 'modifypwd_form': modifypwd_form})
