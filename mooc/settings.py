@@ -139,6 +139,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),  # 此处忘记加逗号报错，可能是关于参数格式的问题
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 此处文件路径设置很重要，主要体现在页面文件调用和上传
+
 # 重载authenticate的配置
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
