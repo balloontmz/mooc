@@ -140,3 +140,27 @@ EMAIL_FROM = '1956354744@qq.com'
 错误的激活链接，错误的重置链接。值回填，form报错
 
 更多: 重置密码链接是否被点击过，过期时间。
+
+
+django.db.migrations.exceptions.InconsistentMigrationHistory: Migration
+admin.0001_initial is applied before its dependency users.0001_initial on
+database 'default'
+此错误出现在已经初始化users之后再在setting中重新设置users
+
+# 重载authenticate的配置
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
+class CustomBackend(ModelBackend):
+    def authenticate(self, username=None, password=None, **kwargs):
+setting 149行   实现能够用邮箱登录
+
+{% ifequal city_id city.id|stringformat:'i' %} 此方法格式化了city.id(整型)，把其变成string类型？？？
+
+setting中加入(用于图片加载等用途)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 此处文件路径设置很重要，主要体现在页面文件调用和上传
+'django.template.context_processors.media',  # 添加图片处理器
+re_path('media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),  # 处理图片显示的url，使用django自带的serve # 猜测还可以使用静态文件路由
+template中： <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ course_org.image }}"/>
+pagnization也有一些配置，没用到，暂没配置

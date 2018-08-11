@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'captcha',
+    'pure_pagination',
 ]
+
 # 重载AUTH_USER_MODEL (用来干嘛？) 为了使UserProfile生效：可能和后面相关？
 AUTH_USER_MODEL = 'users.UserProfile'
 
@@ -75,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',  # 添加图片处理器
             ],
         },
     },
