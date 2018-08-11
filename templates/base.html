@@ -64,7 +64,7 @@
 							<li>
 								<a href="teachers-list.html">授课教师</a>
 							</li>
-							<li class="active"><a href="{% url 'org_list' %}">授课机构</a></li>
+							<li class="active"><a href="{% url 'org:org_list' %}">授课机构</a></li>
 						</ul>
 					</div>
 				</div>
@@ -122,51 +122,7 @@
 <script src="{% static 'js/validateDialog.js' %}"  type="text/javascript"></script>
 <script src="{% static 'js/deco-common.js' %}"  type="text/javascript"></script>
 
-<script>
-    $(function(){
-        $('#jsStayBtn').on('click', function(){
-            var _this = $(this);
-            verify = verifyDialogSubmit(
-                [
-                    {id: '#companyName', tips: Dml.Msg.epComName, errorTips:'', require: true},
-                    {id: '#companyMobile', tips: Dml.Msg.epPhone, errorTips: Dml.Msg.erPhone, regName: 'phone', require: true},
-                    {id: '#companyAddress', tips: Dml.Msg.epComAddress,require: true}
-                ]
-            );
-            if(!verify){
-               return;
-            }
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url:"/company/company_apply/",
-                data:$('#jsStayForm').serialize(),
-                async: true,
-                beforeSend:function(xhr, settings){
-                    _this.val("提交中...")
-                    _this.attr("disabled","disabled");
-                    xhr.setRequestHeader("X-CSRFToken", "mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5");
-                },
-                success: function(data) {
-                    if(data.status == 'success'){
-                        $('#jsStayForm')[0].reset();
-                        Dml.fun.showTipsDialog({
-                            title:'提交成功',
-                            h2:'您的入住申请提交成功!',
-                        });
-                        Dml.fun.winReload();
-                    }else if(data.status == 'failure'){
-                        $('#jsCompanyTips').html(data.error_msg).show();
-                    }
-                },
-                complete: function(XMLHttpRequest){
-                    _this.val("立即申请 >");
-                    _this.removeAttr("disabled");
-                }
-            });
-        });
-    })
-</script>
+
 
 </body>
 </html>

@@ -18,7 +18,6 @@ from django.urls import path, include, re_path
 import xadmin
 from django.views.generic import TemplateView
 from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
-from organization.views import OrgView
 from django.views.static import serve
 from mooc.settings import MEDIA_ROOT
 
@@ -34,6 +33,7 @@ urlpatterns = [
     path('forgetpwd/', ForgetPwdView.as_view(), name='forget_pwd'),
     re_path('reset/(?P<active_code>.*)/', ResetView.as_view(), name='reset_pwd'),
     path('modify_pwd/', ModifyPwdView.as_view(), name='modify_pwd'),
-    path('org_list/', OrgView.as_view(), name='org_list'),
+    # 课程机构app的url配置
+    path('org/', include('organization.urls', namespace='org')),
     re_path('media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),  # 处理图片显示的url，使用django自带的serve # 猜测还可以使用静态文件路由
 ]

@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from .models import CourseOrg, CityDict
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+from organization.forms import UserAskForm
+from django.http import HttpResponse, JsonResponse
 
 
 # Create your views here.
@@ -61,3 +63,19 @@ class OrgView(View):
             'hot_orgs': hot_orgs,
             'sort': sort,
         })
+
+
+# 用户添加我要学习
+class AddUserAskView(View):
+    # 处理表单方法为post
+    def post(self, request):
+        userask_form = UserAskForm(request.POST)
+        # 判断form是否有效
+        if userask_form.is_valid():
+            # 这个form有model属性
+            user_ask = userask_form.save(commit=True)
+            return HttpResponse("{'status': 'success'}", content_type='application/json')
+        else:
+            # 如果保存失败，返回json字符串，并将form的报错信息通过msg传递到前端
+            return HttpResponse("{'status': 'fail', 'msg': {0}}".format(userask_form.errors), content_type='application/json')
+
