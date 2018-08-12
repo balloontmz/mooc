@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime
+from organization.models import CourseOrg
 
 
 # Create your models here.
@@ -29,6 +30,7 @@ class Course(models.Model):
     # 保存点击量，点进页面就酸
     click_nums = models.IntegerField(default=0, verbose_name='点击量') # 对该功能的实现方式很好奇
     add_time = models.DateTimeField(default=datetime.now, verbose_name='创建时间')  # 课程创建时间？
+    course_org = models.ForeignKey(CourseOrg, on_delete=models.CASCADE, verbose_name='所属机构', null=True, blank=True)  # 由于是后增的，null和blank属性为true
 
     def __str__(self):  # 此处暂时用于后台外键显示的名称
         return self.name

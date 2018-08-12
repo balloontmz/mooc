@@ -164,3 +164,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 此处文件路径设置很重�
 re_path('media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),  # 处理图片显示的url，使用django自带的serve # 猜测还可以使用静态文件路由
 template中： <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ course_org.image }}"/>
 pagnization也有一些配置，没用到，暂没配置
+注意json传输格式，字符串采用双引号。。。标准格式总没错，不标准可能造成bug

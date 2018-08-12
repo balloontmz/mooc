@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from .models import CourseOrg, CityDict
+from operation.models import UserFavorite
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from organization.forms import UserAskForm
 from django.http import HttpResponse, JsonResponse
@@ -74,8 +75,119 @@ class AddUserAskView(View):
         if userask_form.is_valid():
             # 这个form有model属性
             user_ask = userask_form.save(commit=True)
-            return HttpResponse("{'status': 'success'}", content_type='application/json')
+            return HttpResponse('{"status": "success"}', content_type='application/json')
         else:
             # 如果保存失败，返回json字符串，并将form的报错信息通过msg传递到前端
-            return HttpResponse("{'status': 'fail', 'msg': {0}}".format(userask_form.errors), content_type='application/json')
+            return HttpResponse('{"status": "fail", "msg": {0}}'.format(userask_form.errors), content_type='application/json')
+
+
+# 机构首页
+class OrgHomeView(View):
+    def get(self, request, org_id):
+        current_page = 'home'
+        # 根据id取到课程机构
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        # 通过课程机构找到课程。内建的变量，找到指向这个字段的外键引用
+        all_courses = course_org.course_set.all()[:4]
+        all_teacher = course_org.teacher_set.all()[:2]  # 主页，所以只是节选，如果在列表页，应该就是全选了
+        # 以下功能应该不是用在此处？？？应该是对应机构课程教师详情页？？？
+        has_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
+                has_fav = True
+
+        return render(request, 'org-detail-homepage.html', {
+            'all_courses': all_courses,
+            'all_teacher': all_teacher,
+            'course_org': course_org,
+            'current_page': current_page,
+        })
+
+
+# 机构课程列表页
+class OrgCourseView(View):
+    def get(self, request, org_id):
+        current_page = 'course'
+        # 根据id取到课程机构
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        # 通过课程机构找到课程。内建的变量，找到指向这个字段的外键引用
+        all_courses = course_org.course_set.all()
+        has_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
+                has_fav = True
+
+        return render(request, 'org-detail-course.html', {
+            'all_courses': all_courses,
+            'course_org': course_org,
+            'current_page': current_page,
+        })
+
+
+# 机构描述详情页
+class OrgDescView(View):
+    def get(self, request, org_id):
+        # 向前端传值，表示在desc页
+        current_page = 'desc'
+        # 根据id取到课程机构
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        # 向前端传值说明用户是否收藏
+        has_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
+                has_fav = True
+
+        return render(request, 'org-detail-desc.html', {
+            'course_org': course_org,
+            'current_page': current_page,
+            'has_fav': has_fav,
+        })
+
+
+# 机构讲师列表页
+class OrgTeacherView(View):
+    def get(self, request, org_id):
+        # 向前端传值，表明在教师页
+        current_page = 'teacher'
+        # 通过id查找课程机构
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        # 通过课程机构找到教室
+        all_teacher = course_org.teacher_set.all()
+        # 向前端传值表明用户是否收藏。
+        has_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
+                has_fav = True
+
+        return render(request, 'org-detail-teachers.html', {
+            'all_teachers': all_teacher,
+            'course_org': course_org,
+            'current_page': current_page,
+            'has_fav': has_fav,
+        })
+
+
+# 添加收藏和取消收藏功能
+class AddFavView(View):
+    def post(self, request):
+        id = request.POST.get('fav_id', 0)
+        type = request.POST.get('fav_type', 0)
+        # 判断用户是否登录，即使未登录，request也会有一个匿名user
+        if not request.user.is_authenticated:
+            return HttpResponse('{"status": "fail", "msg": "收藏"}', content_type='application/json')
+        exist_records = UserFavorite.objects.filter(user=request.user, fav_id=int(id), fav_type=int(type))
+        if exist_records:
+            # 如果记录存在，则表示用户取消收藏
+            exist_records.delete()
+            return HttpResponse('{"status": "success", "msg": "收藏"}', content_type='application/json')
+        else:
+            user_fav = UserFavorite()
+            if int(type) > 0 and int(id) > 0:
+                user_fav.fav_id = int(id)
+                user_fav.fav_type = int(type)
+                user_fav.user = request.user
+                user_fav.save()
+                return HttpResponse('{"status": "success", "msg": "已收藏"}', content_type='application/json')
+            else:
+                return HttpResponse('{"status": "fail", "msg": "收藏失败"}', content_type='application/json')
 
