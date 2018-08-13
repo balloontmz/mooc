@@ -28,7 +28,9 @@ class Course(models.Model):
         max_length=100
     )
     # 保存点击量，点进页面就酸
-    click_nums = models.IntegerField(default=0, verbose_name='点击量') # 对该功能的实现方式很好奇
+    click_nums = models.IntegerField(default=0, verbose_name='点击量')  # 对该功能的实现方式很好奇
+    category = models.CharField(max_length=20, verbose_name='课程类别', default='后端开发')
+    tag = models.CharField(max_length=15, verbose_name='课程标签', default='')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='创建时间')  # 课程创建时间？
     course_org = models.ForeignKey(CourseOrg, on_delete=models.CASCADE, verbose_name='所属机构', null=True, blank=True)  # 由于是后增的，null和blank属性为true
 

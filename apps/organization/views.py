@@ -81,7 +81,7 @@ class AddUserAskView(View):
             return HttpResponse('{"status": "fail", "msg": {0}}'.format(userask_form.errors), content_type='application/json')
 
 
-# 机构首页
+# 某个机构的首页
 class OrgHomeView(View):
     def get(self, request, org_id):
         current_page = 'home'
