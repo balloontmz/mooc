@@ -165,3 +165,5 @@ re_path('media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),  # 处理�
 template中： <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ course_org.image }}"/>
 pagnization也有一些配置，没用到，暂没配置
 注意json传输格式，字符串采用双引号。。。标准格式总没错，不标准可能造成bug
+
+收藏功能的实现view在org下   url为 org:add_fav  需要参数为  fav_type 整数 fav_id  此处为整数，应该重构的 
