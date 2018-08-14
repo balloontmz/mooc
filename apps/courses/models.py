@@ -42,7 +42,7 @@ class Course(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = '课程' # 该类的后台显示名称
+        verbose_name = '课程'  # 该类的后台显示名称
         verbose_name_plural = verbose_name
 
 

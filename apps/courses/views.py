@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from courses.models import Course, CourseResource
-from operation.models import UserFavorite
+from operation.models import UserFavorite, CourseComments
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -75,3 +76,43 @@ class CourseInfoView(View):
             'course': course,
             'all_resources': all_resources,  # 前端用course.courseresource_set.get_queryset代替了
         })
+
+
+# 评论界面
+class CommentsView(View):
+    def get(self, request, course_id):
+        # 此处course_id为url传入的值
+        # objects 的三种方法（all、get、filter）需要多了解
+        course = Course.objects.get(id=int(course_id))
+        # 资源用来干嘛？ 看前端
+        all_resources = CourseResource.objects.filter(course=course)
+        all_comments = CourseComments.objects.all()
+
+        return render(request, 'course-comment.html', {
+            'course': course,
+            'all_resources': all_resources,
+            'all_comments': all_comments,
+        })
+
+
+# ajax异步添加评论
+class AddCommentsView(View):
+    def post(self, request):
+        if not request.user.is_authenticated:
+            # 未登录时返回json提示未登录，ajax跳转到登录页面
+            return HttpResponse('{"status": "fail", "msg": "用户未登录"}', content_type='application/json')
+        course_id = request.POST.get('course_id', 0)
+        comments = request.POST.get('comments', '')
+        if int(course_id) > 0 and comments:
+            course_comments = CourseComments()
+            # get只要取出一条数据，如果多条抛出异常，没有数据也抛出异常？
+            # filter取出一个列表出来，queryset。没有数据返回空的queryset不会抛出异常
+            course = Course.objects.get(id=int(course_id))
+            # 外键写入要存入对象
+            course_comments.course = course
+            course_comments.comments = comments
+            course_comments.user = request.user # 网络上传输的只是user的特征值，user的传递都在服务器内部
+            course_comments.save()
+            return HttpResponse('{"status": "success", "msg": "评论成功"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status": "fail", "msg": "评论失败"}', content_type='application/json')

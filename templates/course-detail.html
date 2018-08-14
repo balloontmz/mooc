@@ -49,6 +49,7 @@
 						</ul>
 						<div class="btns">
 							<div class="btn colectgroupbtn" id="jsLeftBtn"> <!-- 此插件通过ajax实现异步功能，此处为收藏功能，多看 -->
+                                <!-- 真的要多看，好东西丫，js异步加载，经典例子 balloontmz -->
                                 {% if has_fav_course %}已收藏{% else %}收藏{% endif %}
                             </div>
                             <div class="buy btn"><a style="color: white" href="{% url 'course:course_info' course.id %}">开始学习</a></div>
