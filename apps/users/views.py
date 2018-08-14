@@ -7,9 +7,10 @@ from django.views.generic.base import View
 from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm
 from django.contrib.auth.hashers import make_password
 from utils.email_send import send_register_email
-
+from django.http import HttpResponseRedirect # 加载重定向类
 
 # Create your views here.
+# 重载登录方式，在setting中加载
 class CustomBackend(ModelBackend):
     def authenticate(self, username=None, password=None, **kwargs):
         try:
@@ -54,13 +55,17 @@ def user_login(request):
         return render(request, "login.html", {})
 
 
+# 添加登录重定向 next参数经过next(view)->redict_url(get)->next(view)->redict_url(post)
 class LoginView(View):
     # 该类能直接调用get方法免去判断
 
     def get(self, request):
         # render 就是渲染html 返回用户
         # render三变量： request 模板名称 一个传递参数的字典
-        return render(request, 'login.html', {})
+        redirect_url = request.GET.get('next', '')
+        return render(request, 'login.html', {
+            'redirect_url': redirect_url,  # 此参数在post中重加为next？
+        })
 
     def post(self, request):
         # 该类实例化需要一个字典dict： request.POST就是一个QueryDict所以直接传入
@@ -78,6 +83,10 @@ class LoginView(View):
             if user is not None:
                 # 以下函数实际是吧user写入request
                 login(request, user)
+                # 增加重定向回原网页
+                redirect_url = request.POST.get('next', '')
+                if redirect_url:
+                    return HttpResponseRedirect(redirect_url)
                 # 跳转到首页，此时的request带上了user对象的状态
                 return render(request, 'index.html')
             # 仅当账户密码出错的时候

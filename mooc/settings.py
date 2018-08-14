@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'organization',
     'xadmin',
     'crispy_forms',
-    'captcha',
-    'pure_pagination',
+    'captcha',  # 验证码
+    'pure_pagination',  # 分页器
 ]
 
 # 重载AUTH_USER_MODEL (用来干嘛？) 为了使UserProfile生效：可能和后面相关？
@@ -77,7 +77,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'django.template.context_processors.i18n'  # 好像是用于国际化，就是多语种网站，这一块的设置好像和顺序相关，需要多看,报错了，可能是配套设置没到位
                 'django.template.context_processors.media',  # 添加图片处理器
+                'django.template.context_processors.request'  # 用于视图中采用request的相关命令参数，例如request.path、request.session。
             ],
         },
     },

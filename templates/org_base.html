@@ -148,7 +148,7 @@
             success: function(data) {
                 if(data.status == 'fail'){
                     if(data.msg == '用户未登录'){
-                        window.location.href="{% url 'login' %}";
+                        window.location.href="{% url 'login' %}?next={{ request.path }}";
                     }else{
                         alert(data.msg)
                     }

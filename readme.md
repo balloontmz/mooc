@@ -166,4 +166,7 @@ template中： <img width="200" height="120" class="scrollLoading" data-url="{{ 
 pagnization也有一些配置，没用到，暂没配置
 注意json传输格式，字符串采用双引号。。。标准格式总没错，不标准可能造成bug
 
-收藏功能的实现view在org下   url为 org:add_fav  需要参数为  fav_type 整数 fav_id  此处为整数，应该重构的 
+收藏功能的实现view在org下   url为 org:add_fav  需要参数为  fav_type 整数 fav_id  此处为整数，应该重构的
+
+class CourseInfoView(LoginRequiredMixin, View): 多重继承，跟顺序相关，首先得继承前置类，最后继承后置类
+以上继承的第一个类的源码很简单，但是没看懂 
