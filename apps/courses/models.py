@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from datetime import datetime
-from organization.models import CourseOrg
+from organization.models import CourseOrg, Teacher
 
 
 # Create your models here.
@@ -32,7 +32,11 @@ class Course(models.Model):
     category = models.CharField(max_length=20, verbose_name='课程类别', default='后端开发')
     tag = models.CharField(max_length=15, verbose_name='课程标签', default='')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='创建时间')  # 课程创建时间？
+    # 后来添加的
     course_org = models.ForeignKey(CourseOrg, on_delete=models.CASCADE, verbose_name='所属机构', null=True, blank=True)  # 由于是后增的，null和blank属性为true
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name='讲师', null=True, blank=True)
+    you_need_know = models.CharField(max_length=300, default='一颗勤学的心是本课程的必要前提', verbose_name='=课程须知')
+    teacher_tell = models.CharField(max_length=300, default='什么都可以学到，按时交作业，不然叫家长', verbose_name='=老师告诉你')
 
     def __str__(self):  # 此处暂时用于后台外键显示的名称
         return self.name
@@ -66,6 +70,10 @@ class Video(models.Model):
     lesson = models.ForeignKey(Lesson, verbose_name='章节', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='视频名称')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
+    # 后加的
+    url = models.CharField(max_length=200, default='http://blog.mtianyan.cn/', verbose_name='视频地址')
+    # 课程所需时间
+    learn_times = models.IntegerField(default=0, verbose_name='学习时长（分钟数）')
 
     def __str__(self):  # 此处暂时用于后台外键显示
         return self.name

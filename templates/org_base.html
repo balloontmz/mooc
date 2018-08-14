@@ -25,12 +25,12 @@
                         <div class="fl"><p>服务电话：<b>87834321</b></p></div>
                         <div class="personal">
                             <dl class="use fr">
-                                <dd>{{ user.username }}<img class="down fr" src="{% static 'image/top_down.png' %}"></dd>
-                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"></dt>
+                                <dd>{{ user.username }}<img class="down fr" src="{% static 'images/top_down.png' %}"></dd>
+                                <!--<dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"></dt>-->
                             </dl>
                             <div class="userdetail">
                                 <dl>
-                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.iamge }}"></dt>
+                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"></dt> <!-- 此处由于资源字段输入错误曾导致无法加载 -->
                                     <dd>
                                         <h2>{{ user.nick_name }}</h2>
                                         <p>{{ user.username }}</p>

@@ -51,7 +51,7 @@
 							<div class="btn colectgroupbtn" id="jsLeftBtn"> <!-- 此插件通过ajax实现异步功能，此处为收藏功能，多看 -->
                                 {% if has_fav_course %}已收藏{% else %}收藏{% endif %}
                             </div>
-                            <div class="buy btn"><a style="color: white" href="course-video.html">开始学习</a></div>
+                            <div class="buy btn"><a style="color: white" href="{% url 'course:course_info' course.id %}">开始学习</a></div>
 						</div>
 					</div>
                     <div class="group-share-box">
