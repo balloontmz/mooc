@@ -89,22 +89,8 @@ a:active {
     margin: 0 20px;
 }
 #logo a,
-.logo a {
-    display: block;
-    height: 60px;
-    width: 140px;
-    background: url(/static/img/common/logo.png?t=1) no-repeat center center;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-}
-.logo a {
-    -webkit-transition: background-color 0.2s;
-    -moz-transition: background-color 0.2s;
-    transition: background-color 0.2s;
-}
-.logo a:hover {
-    background-color: #363c41;
+.logo a{
+
 }
 .nav-item li {
     float: left;

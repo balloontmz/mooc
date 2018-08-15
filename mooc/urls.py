@@ -33,7 +33,7 @@ urlpatterns = [
     path('forgetpwd/', ForgetPwdView.as_view(), name='forget_pwd'),
     re_path('reset/(?P<active_code>.*)/', ResetView.as_view(), name='reset_pwd'),
     path('modify_pwd/', ModifyPwdView.as_view(), name='modify_pwd'),
-    # 课程机构app的url配置
+    # 课程机构app的url配置, 教师也在里面
     path('org/', include('organization.urls', namespace='org')),
     # 课程app的url配置
     path('course/', include('courses.urls', namespace='course')),

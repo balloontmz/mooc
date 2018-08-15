@@ -78,8 +78,8 @@
                                 <li class="{% ifequal '/course' request.path|slice:':7' %}active{% endifequal %}">
                                     <a href="{% url 'course:list' %}">公开课<img class="hot" src="{% static 'images/nav_hot.png' %}"></a>
                                 </li>
-                                <li>
-                                    <a href="">授课教师</a>
+                                <li class="{% ifequal '/org/teacher' request.path|slice:':12' %}active{% endifequal %}">
+                                    <a href="{% url 'org:teacher_list' %}">授课教师</a>
                                 </li>
                                 <li class="{% ifequal '/org/list' request.path|slice:':9' %}active{% endifequal %}">
                                     <a href="{% url 'org:org_list' %}">课程机构</a>

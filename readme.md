@@ -169,4 +169,22 @@ pagnization也有一些配置，没用到，暂没配置
 收藏功能的实现view在org下   url为 org:add_fav  需要参数为  fav_type 整数 fav_id  此处为整数，应该重构的
 
 class CourseInfoView(LoginRequiredMixin, View): 多重继承，跟顺序相关，首先得继承前置类，最后继承后置类
-以上继承的第一个类的源码很简单，但是没看懂 
+以上继承的第一个类的源码很简单，但是没看懂
+在static/css/muke/common-less.css中删除了如下片段，该片段导致了某些加载该css的模块无法显示logo。。。手动加粗
+.logo a {
+    display: block;
+    height: 60px;
+    width: 140px;
+    background: url('/static/images/footlogo.png') no-repeat center center;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.logo a {
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+.logo a:hover {
+    background-color: #363c41;
+} 
