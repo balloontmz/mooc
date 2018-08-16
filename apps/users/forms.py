@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from captcha.fields import CaptchaField
+from users.models import UserProfile
 
 
 # 登录表单验证
@@ -40,3 +41,19 @@ class ModifyPwdForm(forms.Form):
     # 密码不能小于5位
     password1 = forms.CharField(required=True, min_length=5)
     password2 = forms.CharField(required=True, min_length=5)
+
+
+# 用于文件上传， 修改头像
+class UploadImageForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ['image']
+
+
+# 用于个人中心修改个人信息
+class UserInfoForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ['nick_name', 'gender', 'birthday', 'address', 'moble']

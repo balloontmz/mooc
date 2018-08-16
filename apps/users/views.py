@@ -1,13 +1,18 @@
+# -*- coding: utf-8 -*-
+import json
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login  # 在类中重载了为何还要导入，为何要在setting中加入本文件中重载的类以及方法
 from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import UserProfile, EmailVerifyRecord
 from django.db.models import Q
 from django.views.generic.base import View
-from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm
+from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm, UploadImageForm, UserInfoForm
 from django.contrib.auth.hashers import make_password
 from utils.email_send import send_register_email
 from django.http import HttpResponseRedirect # 加载重定向类
+
 
 # Create your views here.
 # 重载登录方式，在setting中加载
@@ -95,7 +100,7 @@ class LoginView(View):
         # 没有成功说明有值是None，并再次跳转回主页面
         else:
             return render(
-                request, 'login.html',{
+                request, 'login.html', {
                     'login_form': login_form
                 }
             )
@@ -176,7 +181,8 @@ class ForgetPwdView(View):
             return render(request, 'login.html', {'msg': '重置密码邮件发送成功，请注意查收'})
         # 如果表单失败则是验证码验证失败等
         else:
-            return render(request, 'forgetpwd.html', {'forget_form': forget_form})
+            return render(request, 'forgetpwd.html', {
+                'forget_form': forget_form})
 
 
 # 重置密码的view
@@ -221,3 +227,103 @@ class ModifyPwdView(View):
         else:
             email = request.POST.get('email', '')
             return render(request, 'password_reset.html', {'email': email, 'modifypwd_form': modifypwd_form})
+
+
+# 用户个人信息view
+class UserInfoView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def get(self, request):
+        return render(request, 'usercenter-info.html', {
+
+        })
+
+    def post(self, request):
+        # 此处不是添加一个新的user，需要指明instance，不然无法修改名，而是新增用户
+        user_info_form = UserInfoForm(request.POST, instance=request.user)
+        if user_info_form.is_valid():
+            user_info_form.save()
+            return HttpResponse('{"status": "success"}', content_type='application/json')
+        else:
+            # 通过json的dumps方法把字典转换成json字符串
+            return HttpResponse(json.dumps(user_info_form.errors), content_type='application/json')
+
+
+# 用户上传图片的view，用于修改头像
+class UploadImageView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def post(self, request):
+        # 这时候用户上传的文件就已经保存到imageform了，为modelform添加instance值直接保存
+        image_form = UploadImageForm(request.POST, request.FILES, instance=request.user)
+        if image_form.is_valid():
+            image_form.save()
+            # 取出clean_data中的值，一个dict。(此dict为通过了form验证的数据)
+            # 以下提供了修改用户image的另一种方法，匹配单一不带modelform，可查看debug
+            # image = image_form.cleaned_data['image']
+            # request.user.image = image
+            # request.user.save()
+            return HttpResponse('{"status": "success"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status": "fail"}', content_type='application/json')
+
+
+# 在个人中新修改用户密码
+class UpdatePwdView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def post(self, request):
+        modify_form = ModifyPwdForm(request.POST)
+        if modify_form.is_valid():
+            pw1 = request.POST.get('password1', '')
+            pw2 = request.POST.get('password2', '')
+            # 如果两次密码不相等，返回错误信息
+            if pw1 != pw2:
+                return HttpResponse('{"static": "fail", "msg": "密码不一致"}', content_type='application/json')
+            # 如果密码一致
+            user = request.user
+            # 加密成django密码形式
+            user.password = make_password(pw1)
+            # save保存到数据库
+            user.save()
+            return HttpResponse('{"static": "success"}', content_type='application/json')
+        # 验证失败说明位数不够
+        else:
+            # 通过json的dumps方法将字典转换为json字符串
+            return HttpResponse(json.dumps(modify_form.errors), content_type='application/json')
+
+
+# 发送邮箱验证码的view（修改用户邮箱的时候）:
+class SendEmailCodeView(LoginRequiredMixin, View):
+    def get(self, request):
+        # 取出需要发送的邮件
+        email = request.GET.get('email', '')
+
+        # 不能使已注册的邮箱
+        if UserProfile.objects.filter(email=email):
+            return HttpResponse('{"email": "邮箱已存在"}', content_type='application/json')
+        send_register_email(email, 'update_email')
+        return HttpResponse('{"status": "success"}', content_type='application/json')
+
+
+# 修改邮箱的view：
+class UpdateEmailView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def post(self, request):
+        email = request.POST.get('email', '')
+        code = request.POST.get('code', '') # 此code应该是手动输入的四位数，取自邮件
+
+        existed_records = EmailVerifyRecord.objects.filter(email=email, code=code, send_type='update_email')
+        if existed_records:
+            user = request.user
+            user.email = email
+            user.save()
+            return HttpResponse('{"status": "success"}', content_type='application/json')
+        else:
+            return HttpResponse('{"email": "验证码无效"}', content_type='application/json')
+

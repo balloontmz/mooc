@@ -121,7 +121,7 @@ class CommentsView(LoginRequiredMixin, View):
         course = Course.objects.get(id=int(course_id))
         # 资源用来干嘛？ 看前端
         all_resources = CourseResource.objects.filter(course=course)
-        all_comments = CourseComments.objects.all().order_by('-add_time')
+        all_comments = CourseComments.objects.filter(course=course).order_by('-add_time')
         # 选出学了这门课的学生关系
         user_courses = UserCourse.objects.filter(course=course)  # 重载该变量，因为这个变量之前的值已经没用了
         # 从关系中取出user_id -> 以上这句推测只是缓存关系，并未执行，以下执行并取出id保存到dict中备用
@@ -158,7 +158,7 @@ class AddCommentsView(View):
             # 外键写入要存入对象
             course_comments.course = course
             course_comments.comments = comments
-            course_comments.user = request.user # 网络上传输的只是user的特征值，user的传递都在服务器内部
+            course_comments.user = request.user  # 网络上传输的只是user的特征值，user的传递都在服务器内部
             course_comments.save()
             return HttpResponse('{"status": "success", "msg": "评论成功"}', content_type='application/json')
         else:

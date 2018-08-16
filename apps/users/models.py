@@ -31,6 +31,7 @@ class UserProfile(AbstractUser):
         default='image/default.png',
         max_length=100
     )
+
     # meta信息，即后台栏目名
     class Meta:
         verbose_name = '用户信息'  # 此处用于后台显示
@@ -45,15 +46,17 @@ class UserProfile(AbstractUser):
 class EmailVerifyRecord(models.Model):
     SEND_CHOICES = (
         ('register', '注册'),
-        ('forget', '忘记密码')
+        ('forget', '忘记密码'),
+        ('update_email', '修改邮箱'),
     )
     code = models.CharField(max_length=20, verbose_name='验证码')
     # 未设置null = true blank = true 默认不可为空（未懂
     email = models.EmailField(max_length=50, verbose_name='邮箱')
-    send_type = models.CharField(choices=SEND_CHOICES, max_length=10)
+    send_type = models.CharField(choices=SEND_CHOICES, max_length=20, verbose_name='验证码类型')
     # 这里的now不带括号，表示调用时才运行，而不是编译时运行
     send_time = models.DateTimeField(default=datetime.now)
     # 某种类型的调用对象时的返回值？？？
+
     def __str__(self):
         return '{0}({1})'.format(self.code, self.email)
 
@@ -78,3 +81,4 @@ class Banner(models.Model):
     class Meta:
         verbose_name = '轮播图'
         verbose_name_plural = verbose_name
+

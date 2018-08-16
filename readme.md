@@ -194,3 +194,11 @@ current_page(用于org的所有界面、每个界面都有自定义)和request.p
 两者都是取出当前页面的特征值，用来做比较或者别的事。前者是自己在view中定义的传出k-v，后者是在模板选择器中加入request，然后模板中调用
 
 应该是由于js的问题，搜索功能无法正常使用，在deco-common.js中
+json格式的返回
+return HttpResponse(json.dumps(modify_form.errors), content_type='application/json')
+
+request.user 跟 user的区别，目前感觉两者没区别？？？可能还需要多看
+
+修改图像，修个人信息功能测试失败，归根结底还是不知道js。
+修改密码功能成功，管理员密码改为ls950322。但是改完后的跳转不正常
+今天真差

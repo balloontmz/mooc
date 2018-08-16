@@ -37,6 +37,9 @@ urlpatterns = [
     path('org/', include('organization.urls', namespace='org')),
     # 课程app的url配置
     path('course/', include('courses.urls', namespace='course')),
+    # user app的url配置
+    path('users/', include('users.urls', namespace='user')),
 
     re_path('media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),  # 处理图片显示的url，使用django自带的serve # 猜测还可以使用静态文件路由
+
 ]
