@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c49f2d28-da7e-4004-ba0e-755e1809c875" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/apps/courses/views.py" afterPath="$PROJECT_DIR$/apps/courses/views.py" />
-      <change beforePath="$PROJECT_DIR$/apps/organization/views.py" afterPath="$PROJECT_DIR$/apps/organization/views.py" />
-      <change beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
-      <change beforePath="$PROJECT_DIR$/static/js/deco-common.js" afterPath="$PROJECT_DIR$/static/js/deco-common.js" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change beforePath="$PROJECT_DIR$/templates/course-list.html" afterPath="$PROJECT_DIR$/templates/course-list.html" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
-      <change beforePath="$PROJECT_DIR$/templates/org-list.html" afterPath="$PROJECT_DIR$/templates/org-list.html" />
-      <change beforePath="$PROJECT_DIR$/templates/org_base.html" afterPath="$PROJECT_DIR$/templates/org_base.html" />
-      <change beforePath="$PROJECT_DIR$/templates/teachers-list.html" afterPath="$PROJECT_DIR$/templates/teachers-list.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -614,7 +605,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534351307519</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="全局导航，temp中 url切片配合模板语言进行匹配。全局搜索功能后端代码初步测试通过，js有点问题，需要进一步review">
+      <created>1534394904023</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1534394904023</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="5">
@@ -661,7 +659,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="User Model 添加邮箱验证码，轮播图" />
     <MESSAGE value="设计完成课程app中四张数据表：课程，章节，视频，资源。" />
     <MESSAGE value="(organization)课程机构app：城市，机构，讲师数据表。" />
     <MESSAGE value="operation下的models设计，用户：课程&amp;消息&amp;收藏&amp;评论&amp;我要学习。并在setting中进行了注册。" />
@@ -686,7 +683,8 @@
     <MESSAGE value="完成课程推荐功能（在info和comment页），评论和学习鉴定权限（采用LoginRequire...多重继承类的方法--需要多看几遍代码），定义了登录重定向回原页面，（继承类自带）。接下来还有视频播放界面需要写。模板中加载了context_processor.request" />
     <MESSAGE value="视频播放页面完成.(前端页面完全复制粘贴，尚未review）介绍说用到了开源js库o.min.js。完成了urlpath和view。从界面来看，play界面和video info界面基本相似。" />
     <MESSAGE value="完成讲师列表页和讲师详情页，详情页有收藏按钮，所以加入了收藏js，代码需要review。共加入2view、2urlpath、2html、3javascript。讲师包含在org namespace中" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成讲师列表页和讲师详情页，详情页有收藏按钮，所以加入了收藏js，代码需要review。共加入2view、2urlpath、2html、3javascript。讲师包含在org namespace中" />
+    <MESSAGE value="全局导航，temp中 url切片配合模板语言进行匹配。全局搜索功能后端代码初步测试通过，js有点问题，需要进一步review" />
+    <option name="LAST_COMMIT_MESSAGE" value="全局导航，temp中 url切片配合模板语言进行匹配。全局搜索功能后端代码初步测试通过，js有点问题，需要进一步review" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
