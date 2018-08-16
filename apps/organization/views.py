@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic.base import View
 from .models import CourseOrg, CityDict, Teacher
@@ -14,13 +15,16 @@ class OrgView(View):
     def get(self, request):
         # 查找所有的课程机构
         all_orgs = CourseOrg.objects.all()
-
         # 热门机构，如果不加负号回事从小到大
         hot_orgs = all_orgs.order_by('-click_num')[:3]
-
+        # 搜索功能
+        search_keywords = request.GET.get('keywords', '')
+        if search_keywords:
+            # 参见course/view
+            all_orgs = all_orgs.filter(Q(name__icontains=search_keywords) | Q(desc__icontains=search_keywords)
+                                       | Q(address__icontains=search_keywords))
         # 取出所有的城市
         all_citys = CityDict.objects.all()
-
         # 取出筛选 的城市，默认值为空
         city_id = request.GET.get('city', '')
         # 如果选择某个城市，也就是前端传回来了值
@@ -28,7 +32,6 @@ class OrgView(View):
             # 外键city在数据中叫city_id
             # 我们就在机构中作进一步筛选
             all_orgs = all_orgs.filter(city_id=int(city_id))  # 此处city_id关键字代表city外键的id属性，django所有,粗略测试模板不可采用此方法？
-
         # 类别筛选
         category = request.GET.get('ct', '')
         if category:
@@ -63,6 +66,7 @@ class OrgView(View):
             'category': category,
             'hot_orgs': hot_orgs,
             'sort': sort,
+            'search_keywords': search_keywords,
         })
 
 
@@ -202,6 +206,13 @@ class TeacherView(View):
         if sort:
             if sort == 'hot':
                 all_teacher = all_teacher.order_by('-click_num')
+        # 搜素功能
+        search_keywords = request.GET.get('keyword', '')
+        if search_keywords:
+            # 参见course/view
+            all_teacher = all_teacher.filter(
+                Q(name__icontains=search_keywords) | Q(work_company__icontains=search_keywords)
+            )
         # 总共有多少老师使用count进行统计
         teacher_nums = all_teacher.count()
         # 对讲师进行分页
@@ -219,6 +230,7 @@ class TeacherView(View):
             "teacher_nums": teacher_nums,
             'sort': sort,
             'rank_teachers': rank_teacher,
+            'search_keywords': search_keywords,
         })
 
 

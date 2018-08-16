@@ -188,3 +188,9 @@ class CourseInfoView(LoginRequiredMixin, View): 多重继承，跟顺序相关�
 .logo a:hover {
     background-color: #363c41;
 } 
+
+
+current_page(用于org的所有界面、每个界面都有自定义)和request.path(用于主页的几个界面，无需定义，直接在template中比较)
+两者都是取出当前页面的特征值，用来做比较或者别的事。前者是自己在view中定义的传出k-v，后者是在模板选择器中加入request，然后模板中调用
+
+应该是由于js的问题，搜索功能无法正常使用，在deco-common.js中

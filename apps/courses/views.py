@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
@@ -9,7 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin # 此类用于验证�
 
 # Create your views here.
 class CourseListView(View):
-    def get(self, request):
+    @staticmethod  # 基于测试采用了一个staticmethod方法，后续可能全改过来，get没用到类的属性
+    def get(request):  # 原来是def get(self, request):
         all_course = Course.objects.all()
         sort = request.GET.get('sort', '')
         if sort:
@@ -18,6 +20,13 @@ class CourseListView(View):
             elif sort == 'hot':
                 all_course = all_course.order_by('-click_nums')
         hot_courses = Course.objects.all().order_by('-students')[:3]  # 取前三位，此代码应该能优化
+        # 搜索功能，需要改js，
+        search_keywords = request.GET.get('keywords', '')
+        if search_keywords:
+            # 在name字段进行操作，做like语句的操作。i代表不区分大小写
+            # or操作使用Q
+            all_course = all_course.filter(Q(name__icontains=search_keywords) | Q(desc__icontains=search_keywords)
+                                           | Q(detail__icontains=search_keywords))
         # 尝试获取前台get请求传递过来的page参数
         # 如果不合法，默认返回第一页
         try:
@@ -31,7 +40,7 @@ class CourseListView(View):
             'all_course': courses,  # 在html中注意采用object_list而不是objects
             'sort': sort,
             'hot_courses': hot_courses,
-
+            'search_keywords': search_keywords,
         })
 
 
