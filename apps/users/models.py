@@ -41,6 +41,10 @@ class UserProfile(AbstractUser):
     def __str__(self):
         return self.username
 
+    def unread_nums(self):  # 机制了解还不够，主要是template调用机制
+        from operation.models import UserMessage
+        return UserMessage.objects.filter(user=self.id).count()  # 此处还没考虑user=0的全员消息的情况
+
 
 # 邮箱验证码model
 class EmailVerifyRecord(models.Model):

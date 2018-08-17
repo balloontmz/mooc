@@ -5,13 +5,17 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login  # 在类中重载了为何还要导入，为何要在setting中加入本文件中重载的类以及方法
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import UserProfile, EmailVerifyRecord
 from django.db.models import Q
 from django.views.generic.base import View
-from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm, UploadImageForm, UserInfoForm
 from django.contrib.auth.hashers import make_password
+from django.http import HttpResponseRedirect  # 加载重定向类
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from utils.email_send import send_register_email
-from django.http import HttpResponseRedirect # 加载重定向类
+from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm, UploadImageForm, UserInfoForm
+from .models import UserProfile, EmailVerifyRecord
+from courses.models import Course
+from operation.models import UserCourse, UserFavorite, UserMessage
+from organization.models import CourseOrg, Teacher
 
 
 # Create your views here.
@@ -131,6 +135,12 @@ class RegisterView(View):
             # 加密password进行保存
             user_profile.password = make_password(pass_word)
             user_profile.save()
+
+            # 写入欢迎注册消息
+            user_message = UserMessage()
+            user_message.user = user_profile.id
+            user_message.message = '欢迎注册mooc'
+            user_message.save()
 
             # 发送注册激活邮件
             send_register_email(user_name, 'register')
@@ -312,7 +322,7 @@ class SendEmailCodeView(LoginRequiredMixin, View):
 # 修改邮箱的view：
 class UpdateEmailView(LoginRequiredMixin, View):
     login_url = '/login/'
-    redirect_field_name = 'next'
+    redirect_field_name = 'next'  # 此属性用于自动跳转登录时的重定向？？？
 
     def post(self, request):
         email = request.POST.get('email', '')
@@ -327,3 +337,92 @@ class UpdateEmailView(LoginRequiredMixin, View):
         else:
             return HttpResponse('{"email": "验证码无效"}', content_type='application/json')
 
+
+# 个人中心我的课程
+class MyCourseView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def get(self, request):
+        user_courses = UserCourse.objects.filter(user=request.user)
+        return render(request, 'usercenter-mycourse.html', {
+            'user_courses': user_courses,
+        })
+
+
+# 我收藏的机构
+class MyFavOrgView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def get(self, request):
+        org_list = []
+        fav_orgs = UserFavorite.objects.filter(user=request.user, fav_type=2)
+        # 上面的fav_orgs只是存放了id。我们还需要id找到机构对象
+        for fav_org in fav_orgs:
+            # 取出fav_id也就是机构的id
+            org_id = fav_org.fav_id
+            # 获取这个机构对象
+            org = CourseOrg.objects.get(id=org_id)
+            org_list.append(org)
+        return render(request, 'usercenter-fav-org.html', {
+            'org_list': org_list,
+        })
+
+
+# 我收藏的老师
+class MyFavTeacherView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def get(self, request):
+        teacher_list = []
+        fav_teachers = UserFavorite.objects.filter(user=request.user, fav_type=3)
+        # 上面的fav只是存放了id。我们还需要id找到机构对象
+        for fav_teacher in fav_teachers:
+            # 取出fav_id也就是教师的id
+            teacher_id = fav_teacher.fav_id
+            # 获取这个机构对象
+            teacher = Teacher.objects.get(id=teacher_id)
+            teacher_list.append(teacher)
+        return render(request, 'usercenter-fav-teacher.html', {
+            'teacher_list': teacher_list,
+        })
+
+
+# 我收藏的课程
+class MyFavCourseView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def get(self, request):
+        course_list = []
+        fav_courses = UserFavorite.objects.filter(user=request.user, fav_type=1)
+        # 上面的fav只是存放了id。我们还需要id找到机构对象
+        for fav_course in fav_courses:
+            # 取出fav_id也就是教师的id
+            course_id = fav_course.fav_id
+            # 获取这个机构对象
+            course = Course.objects.get(id=course_id)
+            course_list.append(course)
+        return render(request, 'usercenter-fav-course.html', {
+            'course_list': course_list,
+        })
+
+
+# 我的消息
+class MyMessageView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def get(self, request):
+        all_message = UserMessage.objects.filter(user = request.user.id)
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(all_message, 4)
+        messages = p.page(page)
+        return render(request, 'usercenter-message.html', {
+            'messages': messages,
+        })
