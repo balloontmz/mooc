@@ -3,19 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c49f2d28-da7e-4004-ba0e-755e1809c875" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/apps/users/models.py" afterPath="$PROJECT_DIR$/apps/users/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/users/urls.py" afterPath="$PROJECT_DIR$/apps/users/urls.py" />
-      <change beforePath="$PROJECT_DIR$/apps/users/views.py" afterPath="$PROJECT_DIR$/apps/users/views.py" />
+      <change beforePath="$PROJECT_DIR$/apps/organization/views.py" afterPath="$PROJECT_DIR$/apps/organization/views.py" />
+      <change beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
-      <change beforePath="$PROJECT_DIR$/templates/teachers-list.html" afterPath="$PROJECT_DIR$/templates/teachers-list.html" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-base.html" afterPath="$PROJECT_DIR$/templates/usercenter-base.html" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-fav-course.html" afterPath="$PROJECT_DIR$/templates/usercenter-fav-course.html" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-fav-org.html" afterPath="$PROJECT_DIR$/templates/usercenter-fav-org.html" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-fav-teacher.html" afterPath="$PROJECT_DIR$/templates/usercenter-fav-teacher.html" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-home.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-message.html" afterPath="$PROJECT_DIR$/templates/usercenter-message.html" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-mycourse.html" afterPath="$PROJECT_DIR$/templates/usercenter-mycourse.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,7 +52,85 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/courses/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="792">
+              <caret line="87" column="23" lean-forward="false" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/organization/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="485">
+              <caret line="143" column="25" lean-forward="true" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
+              <folding>
+                <element signature="e#2461#2976#0" expanded="false" />
+                <element signature="e#3018#3807#0" expanded="false" />
+                <element signature="e#3851#4470#0" expanded="false" />
+                <element signature="e#5911#7012#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="346">
+                <caret line="209" column="8" lean-forward="true" selection-start-line="209" selection-start-column="8" selection-end-line="209" selection-end-column="8" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/organization/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/users/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1116">
+              <caret line="413" column="46" lean-forward="false" selection-start-line="413" selection-start-column="46" selection-end-line="413" selection-end-column="46" />
+              <folding>
+                <element signature="e#1041#1503#0" expanded="false" />
+                <element signature="e#1535#2443#0" expanded="false" />
+                <element signature="e#2549#4052#0" expanded="false" />
+                <element signature="e#4085#5341#0" expanded="false" />
+                <element signature="e#5376#6168#0" expanded="false" />
+                <element signature="e#6218#6887#0" expanded="false" />
+                <element signature="e#6929#7538#0" expanded="false" />
+                <element signature="e#7584#8481#0" expanded="false" />
+                <element signature="e#8547#9175#0" expanded="false" />
+                <element signature="e#9252#9991#0" expanded="false" />
+                <element signature="e#10059#10938#0" expanded="false" />
+                <element signature="e#11023#11408#0" expanded="false" />
+                <element signature="e#11477#12114#0" expanded="false" />
+                <element signature="e#12178#12443#0" expanded="false" />
+                <element signature="e#12505#13043#0" expanded="false" />
+                <element signature="e#13109#13692#0" expanded="false" />
+                <element signature="e#13757#14326#0" expanded="false" />
+                <element signature="e#14387#14831#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -153,7 +222,6 @@
         <option value="$PROJECT_DIR$/apps/courses/models.py" />
         <option value="$PROJECT_DIR$/static/js/login.js" />
         <option value="$PROJECT_DIR$/templates/login.html" />
-        <option value="$PROJECT_DIR$/mooc/settings.py" />
         <option value="$PROJECT_DIR$/templates/course-detail.html" />
         <option value="$PROJECT_DIR$/templates/course_play.html" />
         <option value="$PROJECT_DIR$/apps/courses/urls.py" />
@@ -163,7 +231,6 @@
         <option value="$PROJECT_DIR$/apps/organization/models.py" />
         <option value="$PROJECT_DIR$/apps/organization/urls.py" />
         <option value="$PROJECT_DIR$/templates/teacher-detail.html" />
-        <option value="$PROJECT_DIR$/apps/organization/views.py" />
         <option value="$PROJECT_DIR$/templates/course-list.html" />
         <option value="$PROJECT_DIR$/static/js/deco-common.js" />
         <option value="$PROJECT_DIR$/apps/courses/views.py" />
@@ -178,7 +245,6 @@
         <option value="$PROJECT_DIR$/apps/users/forms.py" />
         <option value="$PROJECT_DIR$/django-course/html/usercenter-info.html" />
         <option value="$PROJECT_DIR$/static/js/deco-user.js" />
-        <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/apps/users/models.py" />
         <option value="$PROJECT_DIR$/apps/users/urls.py" />
         <option value="$PROJECT_DIR$/templates/teachers-list.html" />
@@ -189,6 +255,9 @@
         <option value="$PROJECT_DIR$/templates/usercenter-fav-course.html" />
         <option value="$PROJECT_DIR$/templates/usercenter-fav-org.html" />
         <option value="$PROJECT_DIR$/templates/usercenter-base.html" />
+        <option value="$PROJECT_DIR$/mooc/settings.py" />
+        <option value="$PROJECT_DIR$/apps/organization/views.py" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -198,7 +267,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="683" />
     <option name="y" value="24" />
     <option name="width" value="683" />
@@ -255,16 +324,7 @@
             <path>
               <item name="mooc" type="b2602c69:ProjectViewProjectNode" />
               <item name="mooc" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mooc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mooc" type="462c0819:PsiDirectoryNode" />
-              <item name="mooc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mooc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -598,7 +658,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534450658852</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="完成个人中心中我的课程我的收藏我的消息，目前我的收藏测试正常，我的消息暂未测试，我的课程应该没问题。修改头像密码那里的js暂时还是没解决">
+      <created>1534519967166</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1534519967166</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView" selected-index="5">
@@ -611,7 +678,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="683" y="24" width="683" height="744" extended-state="4" />
+    <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2503888" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="manage.py@mooc" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4043546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -620,7 +687,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.4969697" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31219512" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.63736266" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34318182" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -645,7 +712,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="operation下的models设计，用户：课程&amp;消息&amp;收藏&amp;评论&amp;我要学习。并在setting中进行了注册。" />
     <MESSAGE value="数据表全部生成，migration目录&amp;表django_migration（在数据库中）。将app统一放入apps文件夹，并在setting中加入如下代码：&#10;import sys&#10;import os&#10;# Build paths inside the project like this: os.path.join(BASE_DIR, ...)&#10;BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))&#10;print(BASE_DIR)&#10;print(os.path.join(BASE_DIR, 'apps'))&#10;sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))" />
     <MESSAGE value="django降级为2.0.1, 加入xadmin。祝好运。由于新建项目时未设置编码，数据表和migrations文件夹全部删除重建，由初始编码转为utf8." />
     <MESSAGE value="注册完成所有app的后台。记得重载str。不全verbose_name" />
@@ -670,7 +736,8 @@
     <MESSAGE value="全局导航，temp中 url切片配合模板语言进行匹配。全局搜索功能后端代码初步测试通过，js有点问题，需要进一步review" />
     <MESSAGE value="全局导航，temp中 url切片配合模板语言进行匹配。全局搜索功能后端代码初步测试通过，js有点问题，需要进一步review,后端采用__icontionms功能模糊查询，配合Q并集查询。完成搜索功能" />
     <MESSAGE value="失败的一次commit，个人中心功能全部爆炸，估计是js的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="失败的一次commit，个人中心功能全部爆炸，估计是js的问题" />
+    <MESSAGE value="完成个人中心中我的课程我的收藏我的消息，目前我的收藏测试正常，我的消息暂未测试，我的课程应该没问题。修改头像密码那里的js暂时还是没解决" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成个人中心中我的课程我的收藏我的消息，目前我的收藏测试正常，我的消息暂未测试，我的课程应该没问题。修改头像密码那里的js暂时还是没解决" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -701,14 +768,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/course_play.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="68" column="52" lean-forward="true" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/muke/common-less.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -777,29 +836,6 @@
             <element signature="e#5116#6705#0" expanded="false" />
             <element signature="n#!!block;n#favPraise#0" expanded="false" />
             <element signature="n#!!block;n#getCookie#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/organization/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="69" column="8" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/organization/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="199" column="6" lean-forward="false" selection-start-line="199" selection-start-column="6" selection-end-line="199" selection-end-column="6" />
-          <folding>
-            <element signature="e#24#54#0" expanded="false" />
-            <element signature="e#2461#2976#0" expanded="false" />
-            <element signature="e#3018#3807#0" expanded="false" />
-            <element signature="e#3851#4470#0" expanded="false" />
-            <element signature="e#4512#5077#0" expanded="false" />
-            <element signature="e#5851#6952#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -970,17 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="554">
-            <caret line="203" column="4" lean-forward="false" selection-start-line="203" selection-start-column="4" selection-end-line="203" selection-end-column="4" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/venv/mooc/lib/python3.6/site-packages/django/views/generic/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
@@ -1017,14 +1042,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3438">
           <caret line="191" column="33" lean-forward="false" selection-start-line="191" selection-start-column="33" selection-end-line="191" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/courses/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="87" column="23" lean-forward="false" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1131,28 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="418" column="28" lean-forward="false" selection-start-line="418" selection-start-column="28" selection-end-line="418" selection-end-column="28" />
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-            <element signature="e#1041#1503#0" expanded="false" />
-            <element signature="e#1535#2443#0" expanded="false" />
-            <element signature="e#2549#4052#0" expanded="false" />
-            <element signature="e#4085#5341#0" expanded="false" />
-            <element signature="e#5376#6168#0" expanded="false" />
-            <element signature="e#6218#6887#0" expanded="false" />
-            <element signature="e#6929#7538#0" expanded="false" />
-            <element signature="e#7584#8481#0" expanded="false" />
-            <element signature="e#8547#9175#0" expanded="false" />
-            <element signature="e#9252#9991#0" expanded="false" />
-            <element signature="e#10059#10938#0" expanded="false" />
-            <element signature="e#11023#11408#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/usercenter-fav-teacher.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
@@ -1169,19 +1164,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/usercenter-base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="259" column="45" lean-forward="false" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/usercenter-fav-org.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="42" column="33" lean-forward="true" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mooc/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1395">
+          <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1116">
+          <caret line="413" column="46" lean-forward="false" selection-start-line="413" selection-start-column="46" selection-end-line="413" selection-end-column="46" />
+          <folding>
+            <element signature="e#1041#1503#0" expanded="false" />
+            <element signature="e#1535#2443#0" expanded="false" />
+            <element signature="e#2549#4052#0" expanded="false" />
+            <element signature="e#4085#5341#0" expanded="false" />
+            <element signature="e#5376#6168#0" expanded="false" />
+            <element signature="e#6218#6887#0" expanded="false" />
+            <element signature="e#6929#7538#0" expanded="false" />
+            <element signature="e#7584#8481#0" expanded="false" />
+            <element signature="e#8547#9175#0" expanded="false" />
+            <element signature="e#9252#9991#0" expanded="false" />
+            <element signature="e#10059#10938#0" expanded="false" />
+            <element signature="e#11023#11408#0" expanded="false" />
+            <element signature="e#11477#12114#0" expanded="false" />
+            <element signature="e#12178#12443#0" expanded="false" />
+            <element signature="e#12505#13043#0" expanded="false" />
+            <element signature="e#13109#13692#0" expanded="false" />
+            <element signature="e#13757#14326#0" expanded="false" />
+            <element signature="e#14387#14831#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/courses/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="87" column="23" lean-forward="false" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/usercenter-base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162">
+          <caret line="259" column="45" lean-forward="false" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/organization/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="143" column="25" lean-forward="true" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
+          <folding>
+            <element signature="e#2461#2976#0" expanded="false" />
+            <element signature="e#3018#3807#0" expanded="false" />
+            <element signature="e#3851#4470#0" expanded="false" />
+            <element signature="e#5911#7012#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/organization/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="346">
+            <caret line="209" column="8" lean-forward="true" selection-start-line="209" selection-start-column="8" selection-end-line="209" selection-end-column="8" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

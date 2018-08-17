@@ -135,6 +135,8 @@ class OrgDescView(View):
         current_page = 'desc'
         # 根据id取到课程机构
         course_org = CourseOrg.objects.get(id=int(org_id))
+        course_org.click_num += 1
+        course_org.save()
         # 向前端传值说明用户是否收藏
         has_fav = False
         if request.user.is_authenticated:
@@ -238,6 +240,8 @@ class TeacherView(View):
 class TeacherDetailView(View):
     def get(self, request, teacher_id):
         teacher = Teacher.objects.get(id=int(teacher_id))
+        teacher.click_num += 1
+        teacher.save()
         all_course = teacher.course_set.all()
         # 排行榜讲师
         rank_teacher = Teacher.objects.all().order_by('-fav_nums')[:5]
