@@ -12,36 +12,13 @@
 				<div class="fl">
 					<div class="imgslide">
 						<ul class="imgs">
+                            {% for banner in all_banner %}
                                 <li>
-                                    <a href="">
-                                        <img width="1200" height="478" class="scrollLoading" data-url="{% static 'images/57a801860001c34b12000460.jpg' %}" src="{% static 'images/pixel.gif' %}" />
+                                    <a href="{% url 'index' %}">
+                                        <img width="1200" height="478" class="scrollLoading" src="{{ MEDIA_URL }}{{ banner.image }}" />
                                     </a>
                                 </li>
-                            
-                                <li>
-                                    <a href="">
-                                        <img width="1200" height="478" class="scrollLoading" data-url="{% static 'images/57aa86a0000145c512000460.jpg' %}" src="{% static 'images/pixel.gif' %}" />
-                                    </a>
-                                </li>
-                            
-                                <li>
-                                    <a href="http://mp.weixin.qq.com/s?__biz=MzIxOTExMDA5OA==&amp;mid=2656196547&amp;idx=1&amp;sn=9a99586fb1b1a01c8b5c0e6c81bd307a&amp;scene=1&amp;srcid=0720EO3WmlldCDYMA6cw8mBp#wechat_redirect">
-                                        <img width="1200" height="478" class="scrollLoading" data-url="{% static 'images/57a801860001c34b12000460.jpg' %}" src="{% static 'images/pixel.gif' %}" />
-                                    </a>
-                                </li>
-                            
-                                <li>
-                                    <a href="http://www.domile.com.cn/company/19/">
-                                        <img width="1200" height="478" class="scrollLoading" data-url="{% static 'images/57aa86a0000145c512000460.jpg' %}" src="{% static 'images/pixel.gif' %}" />
-                                    </a>
-                                </li>
-                            
-                                <li>
-                                    <a href="http://www.domile.com.cn/company/19/">
-                                        <img width="1200" height="478" class="scrollLoading" data-url="{% static 'images/57a801860001c34b12000460.jpg' %}" src="{% static 'images/pixel.gif' %}" />
-                                    </a>
-                                </li>
-                            
+                            {% endfor %}
 						</ul>
 					</div>
 					<div class="unslider-arrow prev"></div>
@@ -137,138 +114,45 @@
 					<div class="module1_1 left">
 						<img width="228" height="614" src="{% static 'images/module1_1.jpg' %}"/>
 						<p class="fisrt_word">名师授课<br/>专业权威</p>
-						<a class="more" href="course-list.html">查看更多课程 ></a>
+						<a class="more" href="{% url 'course:list' %}">查看更多课程 ></a>
 					</div>
 					<div class="right group_list">
 						<div class="module1_2 box">
 							<div class="imgslide2">
 								<ul class="imgs">
-                                    
+                                    {% for banner_course in banner_courses %}
                                         <li>
-                                            <a href="/group/groupdetail/2/">
-                                                <img width="470" height="300" class="scrollLoading" data-url="{% static 'images/sass.jpg' %}" src="{% static 'images/pixel.gif' %}" />
+                                            <a href="{% url 'course:course_detail' banner_course.id %}">
+                                                <img width="470" height="300" class="scrollLoading" src="{{ MEDIA_URL }}{{ banner_course.image }}" />
                                             </a>
                                         </li>
-                                    
-                                        <li>
-                                            <a href="/group/groupdetail/3/">
-                                                <img width="470" height="300" class="scrollLoading" data-url="{% static 'images/sass.jpg' %}" src="{% static 'images/pixel.gif' %}" />
-                                            </a>
-                                        </li>
-                                    
-                                        <li>
-                                            <a href="/group/groupdetail/11/">
-                                                <img width="470" height="300" class="scrollLoading" data-url="{% static 'images/sass.jpg' %}" src="{% static 'images/pixel.gif' %}" />
-                                            </a>
-                                        </li>
-                                    
+                                    {% endfor %}
 								</ul>
 							</div>
 							<div class="unslider-arrow2 prev"></div>
 							<div class="unslider-arrow2 next"></div>
 						</div>
+                        {% for course in courses %}
                         
-                            <div class="module1_3 box">
-                                <a href="/group/groupdetail/15/">
-                                    <img width="233" height="190" class="scrollLoading" data-url="{% static 'images/mysql.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
+                            <div class="module1_{{ forloop.counter|add:2 }} box">
+                                <a href="{% url 'course:course_detail' course.id %}">
+                                    <img width="233" height="190" class="scrollLoading" src="{{ MEDIA_URL }}{{ course.image }}"/>
                                 </a>
                                 <div class="des">
-                                    <a href="/group/groupdetail/15/">
-                                        <h2 title="python web开发">python web开发</h2>
+                                    <a href="{% url 'course:course_detail' course.id %}">
+                                        <h2 title="{{ course.name }}">{{ course.name }}</h2>
                                     </a>
-                                    <span class="fl">定金：<i class="key">￥1</i></span>
-                                    <span class="fr">已团：1</span>
+                                    <span class="fl">难度：<i class="key">{{ course.get_degree_display }}</i></span>
+                                    <span class="fr">学习人数：{{ course.students }}</span>
                                 </div>
                                 <div class="bottom">
-                                    <span class="fl" title="清华大学">清华大学</span>
-                                    <span class="star fr">0</span>
+                                    <span class="fl" title="{{ course.course_org.name }}">{{ course.course_org.name }}</span>
+                                    <span class="star fr">{{ course.fav_nums }}</span>
                                 </div>
                             </div>
-                        
-                            <div class="module1_4 box">
-                                <a href="/group/groupdetail/14/">
-                                    <img width="233" height="190" class="scrollLoading" data-url="{% static 'images/mysql.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                </a>
-                                <div class="des">
-                                    <a href="/group/groupdetail/14/">
-                                        <h2 title="java web开发">java web开发</h2>
-                                    </a>
-                                    <span class="fl">定金：<i class="key">￥0</i></span>
-                                    <span class="fr">已团：1</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="慕课网">慕课网</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
-                        
-                            <div class="module1_5 box">
-                                <a href="/group/groupdetail/13/">
-                                    <img width="233" height="190" class="scrollLoading" data-url="{% static 'images/mysql.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                </a>
-                                <div class="des">
-                                    <a href="/group/groupdetail/13/">
-                                        <h2 title="前端开发">前端开发</h2>
-                                    </a>
-                                    <span class="fl">定金：<i class="key">￥0</i></span>
-                                    <span class="fr">已团：4</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="创品空间装饰">清华大学</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
-                        
-                            <div class="module1_6 box">
-                                <a href="/group/groupdetail/9/">
-                                    <img width="233" height="190" class="scrollLoading" data-url="{% static 'images/mysql.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                </a>
-                                <div class="des">
-                                    <a href="/group/groupdetail/9/">
-                                        <h2 title="nodejs入门">nodejs入门</h2>
-                                    </a>
-                                    <span class="fl">定金：<i class="key">￥0</i></span>
-                                    <span class="fr">已团：12</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="清华大学">清华大学</span>
-                                    <span class="star fr">1</span>
-                                </div>
-                            </div>
-                        
-                            <div class="module1_7 box">
-                                <a href="/group/groupdetail/5/">
-                                    <img width="233" height="190" class="scrollLoading" data-url="{% static 'images/mysql.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                </a>
-                                <div class="des">
-                                    <a href="/group/groupdetail/5/">
-                                        <h2 title="爬虫开发">爬虫开发</h2>
-                                    </a>
-                                    <span class="fl">定金：<i class="key">￥2000</i></span>
-                                    <span class="fr">已团：0</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="清华大学">清华大学</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
-                        
-                            <div class="module1_8 box">
-                                <a href="/group/groupdetail/6/">
-                                    <img width="233" height="190" class="scrollLoading" data-url="{% static 'images/mysql.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                </a>
-                                <div class="des">
-                                    <a href="/group/groupdetail/6/">
-                                        <h2 title="android开发">android开发</h2>
-                                    </a>
-                                    <span class="fl">定金：<i class="key">￥50</i></span>
-                                    <span class="fr">已团：0</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="清华大学">清华大学</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
+
+                        {% endfor %}
+
 					</div>
 				</div>
 			</div>
@@ -282,234 +166,27 @@
 					<div class="module3_1 left">
 						<img width="228" height="463" src="{% static 'images/module3_1.jpg' %}"/>
 						<p class="fisrt_word">名校来袭<br/>权威认证</p>
-						<a class="more" href="org-list.html">查看更多机构 ></a>
+						<a class="more" href="{% url 'org:org_list' %}">查看更多机构 ></a>
 					</div>
 					<div class="right">
 						<ul>
-                                <li >
-                                    <a href="/company/1/">
+                            {% for course_org in course_orgs %}
+
+                                <li class="{% if forloop.counter|divisibleby:'5' %}five{% endif %}">
+                                    <a href="{% url 'org:org_home' course_org.id %}">
                                         <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
+                                            <img width="184" height="100" class="scrollLoading" src="{{ MEDIA_URL }}{{ course_org.image }}"/>
                                             <div class="score">
                                                 <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
+                                                    <h2>{{ course_org.tag }}</h2>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p><span class="key" title="清华大学">清华大学</span></p>
+                                        <p><span class="key" title="{{ course_org.name }}">{{ course_org.name }}</span></p>
                                     </a>
                                 </li>
-                            
-                                <li >
-                                    <a href="/company/7/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="慕课网">慕课网</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/8/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/19/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li  class="five">
-                                    <a href="/company/22/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/18/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/3/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/4/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/13/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li  class="five">
-                                    <a href="/company/12/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/15/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/11/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/bjdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/9/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/njdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">南京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li >
-                                    <a href="/company/6/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
-                            
-                                <li  class="five">
-                                    <a href="/company/5/">
-                                        <div class="company">
-                                            <img width="184" height="100" class="scrollLoading" data-url="{% static 'images/qhdx.jpg' %}" src="{% static 'images/pixel.gif' %}"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>5.0</h2>
-                                                    <p>评分</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="北京大学">北京大学</span></p>
-                                    </a>
-                                </li>
+                            {% endfor %}
+
 						</ul>
 					</div>
 				</div>
@@ -518,76 +195,8 @@
 	</section>
 
 <!--sidebar start-->
-<section>
-    <ul class="sidebar">
-        <li class="qq">
-            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2023525077&site=qq&menu=yes"></a>
-        </li>
-        <li class="totop"></li>
-    </ul>
-</section>
 {% endblock %}
+
 {% block custom_js %}
 <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
-<script>
-        var shareUrl = '',
-            shareText = '',
-            shareDesc = '',
-            shareComment = '';
-        $(function () {
-            $(".bdsharebuttonbox a").mouseover(function () {
-                var type = $(this).attr('data-cmd'),
-                    $parent = $(this).parent('.bdsharebuttonbox'),
-                    fxurl = $parent.attr('data-url'),
-                    fxtext = $parent.attr('data-text'),
-                    fxdesc = $parent.attr('data-desc'),
-                    fxcomment = $parent.attr('data-comment');
-                switch (type){
-                    case 'tsina':
-                    case 'tqq':
-                    case 'renren':
-                            shareUrl = fxurl;
-                            shareText = fxdesc;
-                            shareDesc = '';
-                            shareComment = '';
-                        break;
-                    default :
-                            shareUrl = fxurl;
-                            shareText = fxtext;
-                            shareDesc = fxdesc;
-                            shareComment = fxcomment;
-                        break;
-                }
-            });
-        });
-        function SetShareUrl(cmd, config) {
-            if (shareUrl) {
-                config.bdUrl = "http://www.domile.com.cn" + shareUrl;
-            }
-            if(shareText){
-                config.bdText = shareText;
-            }
-            if(shareDesc){
-                config.bdDesc = shareDesc;
-            }
-            if(shareComment){
-                config.bdComment = shareComment;
-            }
-
-            return config;
-        }
-        window._bd_share_config = {
-            "common": {
-                "onBeforeClick":SetShareUrl,
-                "bdPic":"http://www.domile.com.cn{% static 'images/logo2.png' %}",
-                "bdMini":"2",
-                "searchPic":"1",
-                "bdMiniList":false
-            },
-            "share": {
-                "bdSize":"16"
-            }
-        };
-    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com{% static 'api/js/share.js' %}'?v=89860593.js' %}'?cdnversion='+~(-new Date()/36e5)];
-</script>
 {% endblock %}

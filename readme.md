@@ -204,16 +204,26 @@ request.user 跟 user的区别，目前感觉两者没区别？？？可能还�
 今天真差
 
 ###还需要进一步解决的问题
-add_fav负数的处理情况函数 org：add_fav
-首页细节
-logout函数
-404 ，500,页面,
+add_fav负数的处理情况函数 org：add_fav # 已完成
+首页细节 # 初步完成，细节需要增加内容[1]
+logout函数 # 退出功能目前正常，从django.urls import reverse 这个包起了作用
+404 ，500,页面, # 懒得弄 用nignx？
 三个app的点击数已加入，还未测试
 staticfiles_dir和static_root的区别，已经查了，大概了解，部署时需要注意，个人推测暂时不需要修改，app下没有static。如需加深理解需要练习
 主页的图片显示，设置default image
-加入课程时org课程数+1好像还未实现
-视频播放界面暂未测试
+加入课程时org课程数+1好像还未实现 # 已实现
+视频播放界面暂未测试 
 个人信息修改的js需要进一步review
 暂时设想部署时第三方包直接拷贝至extra_apps文件夹，需要加入系统环境变量
 nginx配置文件需要进一步解决（尚未开始）
 GOOD LUCK
+
+[1].关于后台上传文件到media的问题， 一共在模板中加了MEDIA_URL和template processor.media两个参数，后台上传文件文件夹应该与URL相关,MEDIA_ROOT
+则应该是用来访问的绝对路径。
+
+<input type="file" name="image" id="avatarUp" class="js-img-up"/>
+个人中心修改头像功能，此段代码的name属性必须和form格式中field的key一致！！！
+修改功能初步完成，生日还有问题，猜测主要是日期格式的转换问题。返回消息还没搞定
+明天准备部署
+
+出现三个个bug，全是因为拼写错误 具体查看今天commit。

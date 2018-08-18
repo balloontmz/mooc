@@ -16,6 +16,7 @@ class Course(models.Model):
     desc = models.CharField(max_length=300, verbose_name='课程描述')
     # TextField 允许我们不输入长度。可以输入到无限大。暂时定义为TextField, 之后更新为富文本？markdown？
     detail = models.TextField(verbose_name='课程细节')
+    is_banner = models.BooleanField(default=False, verbose_name='是否轮播')
     degree = models.CharField(choices=DEGREE_CHOICES, max_length=2)
     # 使用分钟做后台记录，前台转换
     learn_times = models.IntegerField(default=0, verbose_name='学习时间（分钟）')

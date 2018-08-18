@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic.base import View
 from .models import CourseOrg, CityDict, Teacher
+from courses.models import Course
 from operation.models import UserFavorite
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from organization.forms import UserAskForm
@@ -176,15 +177,35 @@ class OrgTeacherView(View):
 # 添加收藏和取消收藏功能
 class AddFavView(View):
     def post(self, request):
+        # 默认值取0是因为空字符串转int报错
         id = request.POST.get('fav_id', 0)
+        # 取到妳收藏的类型，从前台提交的ajax请求中取
         type = request.POST.get('fav_type', 0)
         # 判断用户是否登录，即使未登录，request也会有一个匿名user
         if not request.user.is_authenticated:
-            return HttpResponse('{"status": "fail", "msg": "收藏"}', content_type='application/json')
+            return HttpResponse('{"status": "fail", "msg": "用户未登录"}', content_type='application/json')
         exist_records = UserFavorite.objects.filter(user=request.user, fav_id=int(id), fav_type=int(type))
         if exist_records:
             # 如果记录存在，则表示用户取消收藏
             exist_records.delete()
+            if int(type) == 1:
+                params = Course.objects.get(id=int(id))
+                params.fav_nums -= 1
+                if params.fav_nums < 0:
+                    params.fav_nums = 0
+                params.save()
+            elif int(type) == 2:
+                params = CourseOrg.objects.get(id=int(id))
+                params.fav_num -= 1
+                if params.fav_nums < 0:
+                    params.fav_nums = 0
+                params.save()
+            elif int(type) == 3:
+                params = Teacher.objects.get(id=int(id))
+                params.fav_nums -= 1
+                if params.fav_nums < 0:
+                    params.fav_nums = 0
+                params.save()
             return HttpResponse('{"status": "success", "msg": "收藏"}', content_type='application/json')
         else:
             user_fav = UserFavorite()
@@ -193,6 +214,25 @@ class AddFavView(View):
                 user_fav.fav_type = int(type)
                 user_fav.user = request.user
                 user_fav.save()
+
+                if int(type) == 1:
+                    params = Course.objects.get(id=int(id))
+                    params.fav_nums += 1
+                    if params.fav_nums < 0:
+                        params.fav_nums = 0
+                    params.save()
+                elif int(type) == 2:
+                    params = CourseOrg.objects.get(id=int(id))
+                    params.fav_num += 1
+                    if params.fav_nums < 0:
+                        params.fav_nums = 0
+                    params.save()
+                elif int(type) == 3:
+                    params = Teacher.objects.get(id=int(id))
+                    params.fav_nums += 1
+                    if params.fav_nums < 0:
+                        params.fav_nums = 0
+                    params.save()
                 return HttpResponse('{"status": "success", "msg": "已收藏"}', content_type='application/json')
             else:
                 return HttpResponse('{"status": "fail", "msg": "收藏失败"}', content_type='application/json')

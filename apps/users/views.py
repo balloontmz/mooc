@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
+from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login  # 在类中重载了为何还要导入，为何要在setting中加入本文件中重载的类以及方法
+from django.contrib.auth import authenticate, login, logout  # 在类中重载了为何还要导入，为何要在setting中加入本文件中重载的类以及方法
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
@@ -12,7 +13,7 @@ from django.http import HttpResponseRedirect  # 加载重定向类
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from utils.email_send import send_register_email
 from .forms import LoginForm, RegisterForm, ActiveForm, ForgetForm, ModifyPwdForm, UploadImageForm, UserInfoForm
-from .models import UserProfile, EmailVerifyRecord
+from .models import UserProfile, EmailVerifyRecord, Banner
 from courses.models import Course
 from operation.models import UserCourse, UserFavorite, UserMessage
 from organization.models import CourseOrg, Teacher
@@ -62,6 +63,15 @@ def user_login(request):
         # render就是渲染html返回用户
         # render三变量: request 模板名称 一个字典写明传给前端的值
         return render(request, "login.html", {})
+
+
+# logout
+class LogoutView(View):
+    def get(self, request):
+        # django自帶的logout
+        logout(request)
+        # 重定向回首頁
+        return HttpResponseRedirect(reverse('index'))
 
 
 # 添加登录重定向 next参数经过next(view)->redict_url(get)->next(view)->redict_url(post)
@@ -345,6 +355,7 @@ class MyCourseView(LoginRequiredMixin, View):
 
     def get(self, request):
         user_courses = UserCourse.objects.filter(user=request.user)
+        print(user_courses.count())
         return render(request, 'usercenter-mycourse.html', {
             'user_courses': user_courses,
         })
@@ -416,7 +427,10 @@ class MyMessageView(LoginRequiredMixin, View):
     redirect_field_name = 'next'
 
     def get(self, request):
-        all_message = UserMessage.objects.filter(user = request.user.id)
+        all_message = UserMessage.objects.filter(user=request.user.id, has_read=False)
+        for unread_message in all_message:
+            unread_message.has_read = True
+            unread_message.save()
         try:
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
@@ -425,4 +439,23 @@ class MyMessageView(LoginRequiredMixin, View):
         messages = p.page(page)
         return render(request, 'usercenter-message.html', {
             'messages': messages,
+        })
+
+
+# 首页view
+class IndexView(View):
+    def get(self, request):
+        # 取出轮播图
+        all_banner = Banner.objects.all().order_by('index')[:5] # 切片不会越界，但是可能为空1
+        # 正常位课程
+        courses = Course.objects.filter(is_banner=False)[:6]
+        # 轮播图课程取三个
+        banner_courses = Course.objects.filter(is_banner=True)[:3]
+        # 课程机构
+        course_orgs = CourseOrg.objects.all()[:15]
+        return render(request, 'index.html', {
+            'all_banner': all_banner,
+            'courses': courses,
+            'banner_courses': banner_courses,
+            'course_orgs': course_orgs,
         })

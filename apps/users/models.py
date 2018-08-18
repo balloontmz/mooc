@@ -24,7 +24,7 @@ class UserProfile(AbstractUser):
     # 地址
     address = models.CharField(max_length=100, verbose_name='地址', default='')
     # 电话
-    moble = models.CharField(max_length=11, null=True, blank=True)
+    mobile = models.CharField(max_length=11, null=True, blank=True)
     # 头像，默认使用default.png
     image = models.ImageField(
         upload_to='image/%Y/%m',
@@ -43,7 +43,7 @@ class UserProfile(AbstractUser):
 
     def unread_nums(self):  # 机制了解还不够，主要是template调用机制
         from operation.models import UserMessage
-        return UserMessage.objects.filter(user=self.id).count()  # 此处还没考虑user=0的全员消息的情况
+        return UserMessage.objects.filter(has_read=False, user=self.id).count()  # 此处还没考虑user=0的全员消息的情况
 
 
 # 邮箱验证码model
